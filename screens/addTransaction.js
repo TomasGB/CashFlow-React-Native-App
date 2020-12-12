@@ -1,7 +1,7 @@
+import { useLinkProps } from '@react-navigation/native'
 import React, { useState } from 'react'
 import {View, Button, TextInput, ScrollView, StyleSheet} from 'react-native'
-
-
+import firebase from '../database/firebase'
 
 
 function AddTransactionScreen() {
@@ -11,6 +11,21 @@ function AddTransactionScreen() {
         Amount:"",
         Type:"",
     })
+
+    const createTransaction = async () =>{
+        if (state.Description == '' || state.Amount == '' || state.Type == ''){
+            alert('Complete all fields.')
+        }
+        else{
+            await firebase.db.collection('transactions').add({
+                Description: state.Description,
+                Amount: state.Amount,
+                Type: state.Type
+            })
+            alert('Transaction Added')
+            props.navigation.navigate('homeScreen')
+        }
+    } 
 
     return (
         <ScrollView style={Styles.Container}>
@@ -31,7 +46,7 @@ function AddTransactionScreen() {
                     </TextInput>
                 </View>
                 <View style={Styles.InputGroup}>
-                    <Button title='Add Transaction' onPress={(value) => console.log(state)}></Button>
+                    <Button title='Add Transaction' onPress={() => createTransaction()}></Button>
                 </View>
             </View>
         </ScrollView>
