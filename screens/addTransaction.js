@@ -4,12 +4,12 @@ import {View, Button, TextInput, ScrollView, StyleSheet} from 'react-native'
 import firebase from '../database/firebase'
 
 
-function AddTransactionScreen() {
+function AddTransactionScreen(props) {
 
     const [state, setState] = useState({
         Description:"",
         Amount:"",
-        Type:"",
+        Type:""
     })
 
     const createTransaction = async () =>{
@@ -20,10 +20,10 @@ function AddTransactionScreen() {
             await firebase.db.collection('transactions').add({
                 Description: state.Description,
                 Amount: state.Amount,
-                Type: state.Type
+                Type: state.Type,
             })
             alert('Transaction Added')
-            props.navigation.navigate('homeScreen')
+            props.navigation.navigate('home')
         }
     } 
 
