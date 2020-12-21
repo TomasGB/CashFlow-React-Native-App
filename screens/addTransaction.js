@@ -9,10 +9,13 @@ function AddTransactionScreen(props) {
     const [state, setState] = useState({
         Description:"",
         Amount:"",
-        Type:""
+        Type:"",
+        dateId: ""
     })
 
     const createTransaction = async () =>{
+        let date = Date.now();
+
         if (state.Description == '' || state.Amount == '' || state.Type == ''){
             alert('Complete all fields.')
         }
@@ -21,6 +24,7 @@ function AddTransactionScreen(props) {
                 Description: state.Description,
                 Amount: state.Amount,
                 Type: state.Type,
+                dateId:date
             })
             alert('Transaction Added')
             props.navigation.navigate('home')
@@ -37,6 +41,7 @@ function AddTransactionScreen(props) {
                 </View>
                 <View style={Styles.InputGroup}>
                     <TextInput placeholder='Amount'
+                        keyboardType = 'numeric'
                         onChangeText={(value) => setState({ ...state, Amount: value })}>
                     </TextInput>
                 </View>
@@ -72,7 +77,7 @@ const Styles =StyleSheet.create({
         marginBottom: 15,
         borderBottomWidth:1 ,
         borderBottomColor: '#cccccc',
-        color: '#00000'
+        color: '#000'
     }
 })
 
