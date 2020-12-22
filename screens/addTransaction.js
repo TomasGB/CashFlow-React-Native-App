@@ -1,6 +1,6 @@
 import { useLinkProps } from '@react-navigation/native'
 import React, { useState } from 'react'
-import {View, Button, TextInput, ScrollView, StyleSheet} from 'react-native'
+import {View, Button,Text, TextInput, ScrollView, StyleSheet, SafeAreaView} from 'react-native'
 import firebase from '../database/firebase'
 
 
@@ -27,34 +27,37 @@ function AddTransactionScreen(props) {
                 dateId:date
             })
             alert('Transaction Added')
-            props.navigation.navigate('home')
+            props.navigation.navigate('Balance')
         }
     } 
 
     return (
-        <ScrollView style={Styles.Container}>
-            <View style={Styles.Wrapper}>
-                <View style={Styles.InputGroup}>
-                    <TextInput placeholder='Description'
-                        onChangeText={(value) => setState({ ...state, Description: value })}>
-                    </TextInput>
+        <SafeAreaView style={{flex:1}}>
+            <ScrollView style={Styles.Container}>
+            <Text style={{flex:1, color:"#fff", marginTop: 35, marginBottom:35, fontSize:24, justifyContent:'center', alignSelf:'center'}}>Add a new transaction</Text>
+                <View style={Styles.Wrapper}>
+                    <View style={Styles.InputGroup}>
+                        <TextInput placeholder='Description'
+                            onChangeText={(value) => setState({ ...state, Description: value })}>
+                        </TextInput>
+                    </View>
+                    <View style={Styles.InputGroup}>
+                        <TextInput placeholder='Amount'
+                            keyboardType = 'numeric'
+                            onChangeText={(value) => setState({ ...state, Amount: value })}>
+                        </TextInput>
+                    </View>
+                    <View style={Styles.InputGroup}>
+                        <TextInput placeholder='Income / Expense'
+                            onChangeText={(value) => setState({ ...state, Type: value })}>
+                        </TextInput>
+                    </View>
+                    <View style={{marginTop:15}}>
+                        <Button title='Add Transaction' onPress={() => createTransaction()}></Button>
+                    </View>
                 </View>
-                <View style={Styles.InputGroup}>
-                    <TextInput placeholder='Amount'
-                        keyboardType = 'numeric'
-                        onChangeText={(value) => setState({ ...state, Amount: value })}>
-                    </TextInput>
-                </View>
-                <View style={Styles.InputGroup}>
-                    <TextInput placeholder='Income / Expense'
-                        onChangeText={(value) => setState({ ...state, Type: value })}>
-                    </TextInput>
-                </View>
-                <View style={Styles.InputGroup}>
-                    <Button title='Add Transaction' onPress={() => createTransaction()}></Button>
-                </View>
-            </View>
-        </ScrollView>
+            </ScrollView>
+        </SafeAreaView>
     );
 } 
 
