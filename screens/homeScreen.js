@@ -19,25 +19,7 @@ const HomeScreen = (props) =>{
 
 
 const Styles =StyleSheet.create({
-    Container: {
-        flex: 1,
-        padding: 35,
-        backgroundColor: '#266BD1',
 
-    },
-    TextDescription: {
-        fontWeight: 'bold',
-    },
-    TextAmount: {
-        fontSize: 15,
-    },
-    Content:{
-        marginBottom:15,
-    },
-    list: {
-        margin:0,
-        padding:0
-    }
 })
 
 export default HomeScreen

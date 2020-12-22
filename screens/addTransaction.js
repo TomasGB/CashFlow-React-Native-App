@@ -34,7 +34,8 @@ function AddTransactionScreen(props) {
     return (
         <SafeAreaView style={{flex:1}}>
             <ScrollView style={Styles.Container}>
-            <Text style={{flex:1, color:"#fff", marginTop: 35, marginBottom:35, fontSize:24, justifyContent:'center', alignSelf:'center'}}>Add a new transaction</Text>
+            <Text style={{flex:1, color:"#fff", marginTop: 35, marginBottom:35, fontSize:24, justifyContent:'center', alignSelf:'center'}}>
+                Add a new transaction</Text>
                 <View style={Styles.Wrapper}>
                     <View style={Styles.InputGroup}>
                         <TextInput placeholder='Description'
@@ -66,7 +67,7 @@ const Styles =StyleSheet.create({
     Container: {
         flex: 1,
         padding: 35,
-        backgroundColor: "#2061BE"
+        backgroundColor: '#3986F9'
     },
     Wrapper: {
         margin: 10,

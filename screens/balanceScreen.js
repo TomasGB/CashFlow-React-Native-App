@@ -3,7 +3,7 @@ import {View, Text, Button, StyleSheet, ScrollView, SafeAreaView} from 'react-na
 import {ListItem} from 'react-native-elements'
 import { Ionicons } from '@expo/vector-icons';
 import firebase from '../database/firebase'
-import AddTransactionScreen from './addTransaction'
+
 
 const BalanceScreen = (props, navigation) =>{
 
@@ -27,23 +27,22 @@ const BalanceScreen = (props, navigation) =>{
         });
     },[]);
 
+
     return(
         <SafeAreaView style={{flex:1, paddingTop:0}}>
         <View style={Styles.Container}>
             <View style={{paddingBottom:15}}>
-                <Text style={{marginBottom:10,fontSize:24 , textAlign:'center'}}>Balance</Text>
-                <View>
-                    <Text style={{marginBottom:10, fontSize:18 ,textAlign:'center'}}>8500</Text>
-                </View>
+                <Text style={{marginBottom:10,fontSize:24 , textAlign:'center', color:'#fff'}}>Your Transactions</Text>
             </View>
-
-            <ScrollView style={{flex: 1, padding: 0, marginBottom:15, maxHeight:350}}>
+            <ScrollView style={{flex: 1, marginBottom:15, maxHeight:500}}>
                     {
                     transactions.map((transaction) => (
                     <ListItem 
                     key={transaction.dateId}>
+
                         <ListItem.Content style={Styles.Content}>
                             <ListItem.Title style={Styles.TextDescription}>{transaction.description}</ListItem.Title>
+                            <Ionicons name='triangle-sharp' style={{alignSelf:'flex-end',alignItems:'center',color: 'green'}}></Ionicons>
                             <ListItem.Subtitle style={Styles.TextAmount}>{transaction.amount}</ListItem.Subtitle>
                         </ListItem.Content>
                     </ListItem>
@@ -60,8 +59,7 @@ const Styles =StyleSheet.create({
     Container: {
         flex: 1,
         padding: 35,
-        backgroundColor: '#266BD1',
-
+        backgroundColor: '#3986F9',
     },
     TextDescription: {
         fontWeight: 'bold',
@@ -75,7 +73,7 @@ const Styles =StyleSheet.create({
     list: {
         margin:0,
         padding:0
-    }
+    },
 })
 
 export default BalanceScreen;

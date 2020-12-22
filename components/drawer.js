@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text,TouchableOpacity,Image } from 'react-native';
+import { View, Text,TouchableOpacity,Image,ScrollView } from 'react-native';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -9,22 +9,27 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import AddTransactionScreen from '../screens/addTransaction'
 import BalanceScreen from '../screens/balanceScreen';
-import { Avatar } from 'react-native-elements';
 import foto from '../assets/foto.jpg'; 
 
 function Home({ navigation }) {
   return (
-        <View style={{ flex: 1, paddingTop:15, paddingLeft:5, backgroundColor:'#266BD1' }}>
+        <View style={{ flex: 1, paddingTop:15, backgroundColor:'#3986F9' }}>
+          <View>
             <TouchableOpacity
                 style={{
-                    justifyContent: 'flex-start', alignItems: 'flex-start'}} 
+                    justifyContent: 'center', alignItems: 'flex-start', paddingLeft:5}} 
                 onPress={() => navigation.openDrawer()}>
-                    <Ionicons name="menu" size={40}/>
+                    <Ionicons name="menu" color='#fff' size={40}/>
             </TouchableOpacity>
-            <Text style={{fontSize:34, justifyContent:'center', marginStart:25, paddingTop:30, paddingBottom:50}}>Hello, Tomas</Text>
+            <Text style={{fontSize:28, justifyContent:'center', alignItems:'flex-end', color:'#fff' , marginStart:50, paddingTop:0, paddingBottom:50}}>Hello, Tomas</Text>
+            </View>
             <Image
                 source= {foto} style={{width:150, height:150, borderRadius:80, alignSelf:'center'}}
             />
+            <ScrollView  style={{ backgroundColor:'#fff', marginTop:30 , borderTopLeftRadius:15, borderTopRightRadius:15}}>
+              <Text style={{textAlign:'center', margin:30, fontSize:20}}>Your Balance</Text>
+              <Text style={{textAlign:'center', fontSize:16, color:'black'}}>4256</Text>
+            </ScrollView>
         </View>
   );
 }
@@ -32,6 +37,8 @@ function Home({ navigation }) {
 function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props} style={{backgroundColor:'rgba(38, 107, 209, 0.4)'}}>
+      <Image source= {foto} style={{width:70, height:70, borderRadius:40, marginLeft:15,alignSelf:'flex-start'}}/>
+      <Text style={{margin:20, fontSize:14}}>Tomas Gomez Bermudez</Text>
       <DrawerItemList {...props} />
     </DrawerContentScrollView>
   );
@@ -42,8 +49,8 @@ const Drawer = createDrawerNavigator();
 function MyDrawer() {
   return (
     <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
-      <Drawer.Screen name="Home" component={Home} />
-      <Drawer.Screen name="Balance" component={BalanceScreen} />
+      <Drawer.Screen name="Home" component={Home}/>
+      <Drawer.Screen name="Transactions" component={BalanceScreen} />
       <Drawer.Screen name="Add Transaction" component={AddTransactionScreen} />
     </Drawer.Navigator>
   );
