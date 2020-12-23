@@ -44,7 +44,7 @@ function AddTransactionScreen(props) {
                     <View style={Styles.InputGroup}>
                         <TextInput placeholder='Amount'
                             keyboardType = 'numeric'
-                            onChangeText={(value) => setState({ ...state, Amount: value })}>
+                            onChangeText={(value) => setState({ ...state, Amount: value})}>
                         </TextInput>
                     </View>
                     <View style={Styles.InputGroup}>

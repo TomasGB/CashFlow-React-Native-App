@@ -40,10 +40,10 @@ const BalanceScreen = (props, navigation) =>{
                         <View style={Styles.transactionsView}>
                             <View style={{justifyContent:'space-between',flexDirection:'row'}}>
                                 
-                                <Text style={{alignSelf:'flex-start',fontSize:20, fontStyle:'bold', color:'#000', marginBottom:5}}>{item.description}</Text>
+                                <Text style={{alignSelf:'flex-start',fontSize:20, color:'#000', marginBottom:5}}>{item.description}</Text>
                                 <Ionicons name='triangle-sharp' style={[item.type == 'Expense' ? Styles.ArrowExpense: Styles.ArrowIncome]}></Ionicons>
                             </View>
-                            <Text style={{fontSize:16, fontStyle:'bold', color:'#fff', marginLeft:5}}>{item.amount}</Text>
+                            <Text style={{fontSize:16, color:'#fff', marginLeft:5}}>{item.amount}</Text>
                         </View>)
                 }
                 

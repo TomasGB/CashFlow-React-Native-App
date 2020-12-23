@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { View, Text,TouchableOpacity,Image,ScrollView } from 'react-native';
 import {createDrawerNavigator,DrawerContentScrollView,DrawerItemList} from '@react-navigation/drawer';
 import { Ionicons } from '@expo/vector-icons';
@@ -8,19 +8,48 @@ import foto from '../assets/foto.jpg';
 import firebase from '../database/firebase'
 
 function Home({ navigation }) {
+  
+  const makeBalance = ()=>{
+    
+    const [incomes, setIncomes] = useState([]);
+    const [expenses, setExpenses] = useState([]);
 
-  const calculateBalance = async () =>{
+      useEffect(() => {
+          firebase.db.collection('transactions').orderBy("dateId", "desc").onSnapshot(querySnapshot =>{
 
-    await firebase.db.collection('transactions').get({
-        Description: state.Description,
-        Amount: state.Amount,
-        Type: state.Type,
-        dateId:date
-    })
-} 
+              querySnapshot.docs.forEach(doc =>{
+                if (doc.data().Type == 'expense' | doc.data().Type == 'Expense'){
+                  expenses.push({
+                    amount: doc.data().Amount,
+                  })
+                }else{
+                  incomes.push({
+                    amount: doc.data().Amount,
+                  })
+                }
+                  
+              });
+              setIncomes(incomes)
+              setExpenses(expenses)
 
+              const totIncome = incomes.reduce(function(prev, cur) 
+              {
+                return prev + parseFloat(cur.amount);
+              }, 0); 
+              console.log(totIncome);
 
-
+              const totExpenses = expenses.reduce(function(prev, cur) 
+              {
+                return prev + parseFloat(cur.amount);
+              }, 0); 
+              console.log(totExpenses);
+              console.log('------------------------');
+              console.log('balance: '+(totIncome-totExpenses));
+              });
+      },[]);
+      return <Text>Bal</Text>
+    }
+    
 
   return (
         <View style={{ flex: 1, paddingTop:25, backgroundColor:'#3986F9' }}>
@@ -38,7 +67,7 @@ function Home({ navigation }) {
             />
             <ScrollView  style={{ backgroundColor:'#fff', marginTop:30 , borderTopLeftRadius:15, borderTopRightRadius:15}}>
               <Text style={{textAlign:'center', margin:30, fontSize:20}}>Your Balance</Text>
-              <Text style={{textAlign:'center', fontSize:16, color:'black'}}>4256</Text>
+              <Text style={{textAlign:'center', fontSize:16, color:'black'}}>{makeBalance()}</Text>
             </ScrollView>
         </View>
   );
