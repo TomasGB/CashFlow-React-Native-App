@@ -1,4 +1,3 @@
-import { useLinkProps } from '@react-navigation/native'
 import React, { useState } from 'react'
 import {View, Button,Text, TextInput, ScrollView, StyleSheet, SafeAreaView} from 'react-native'
 import firebase from '../database/firebase'
@@ -27,14 +26,14 @@ function AddTransactionScreen(props) {
                 dateId:date
             })
             alert('Transaction Added')
-            props.navigation.navigate('Balance')
+            props.navigation.navigate('Transactions')
         }
     } 
 
     return (
         <SafeAreaView style={{flex:1}}>
             <ScrollView style={Styles.Container}>
-            <Text style={{flex:1, color:"#fff", marginTop: 35, marginBottom:35, fontSize:24, justifyContent:'center', alignSelf:'center'}}>
+            <Text style={{flex:1, color:"#fff", marginVertical:35, fontSize:24, justifyContent:'center', alignSelf:'center'}}>
                 Add a new transaction</Text>
                 <View style={Styles.Wrapper}>
                     <View style={Styles.InputGroup}>
@@ -66,14 +65,15 @@ function AddTransactionScreen(props) {
 const Styles =StyleSheet.create({
     Container: {
         flex: 1,
-        padding: 35,
+        paddingVertical: 80,
         backgroundColor: '#3986F9'
     },
     Wrapper: {
         margin: 10,
         padding: 25,
         borderRadius: 5,
-        backgroundColor: 'rgba(207, 226, 254, 0.1)'
+        marginHorizontal:40,
+        backgroundColor: 'rgba(207, 226, 254, 0.3)'
     },
     InputGroup: {
         flex: 1,
