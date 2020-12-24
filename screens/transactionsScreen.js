@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {View, Text, Button, StyleSheet, ScrollView, SafeAreaView, FlatList} from 'react-native'
+import {View, Text, Button, StyleSheet,  SafeAreaView, FlatList} from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import firebase from '../database/firebase';
 
@@ -18,7 +18,8 @@ const BalanceScreen = (props, navigation) =>{
                     description:doc.data().Description,
                     amount:doc.data().Amount,
                     type:doc.data().Type,
-                    dateId: doc.data().dateId
+                    dateId: doc.data().dateId,
+                    area: doc.data().Area
                 })
             });
             setTransactions(transactions)

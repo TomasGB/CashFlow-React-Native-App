@@ -4,9 +4,9 @@ import firebase from '../database/firebase'
 
 function Balance(){
 
-    const [balance, setBalance] = useState();
-    const [totIncome, setTotIncome] =useState();
-    const [totExpense, setTotExpense] =useState();
+    const [balance, setBalance] = useState(0);
+    const [totIncome, setTotIncome] =useState(0);
+    const [totExpense, setTotExpense] =useState(0);
 
         useEffect(() => {
           firebase.db.collection('transactions').orderBy("dateId", "desc").onSnapshot(querySnapshot =>{

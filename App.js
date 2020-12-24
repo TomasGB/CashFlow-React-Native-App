@@ -11,7 +11,6 @@ LogBox.ignoreAllLogs(true)
 
 global.Buffer = Buffer;
 
-
 const Stack = createStackNavigator()
 
 function MyStack() {

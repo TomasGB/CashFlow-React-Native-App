@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-import {View, Button,Text, TextInput, ScrollView, StyleSheet, SafeAreaView} from 'react-native'
-import firebase from '../database/firebase'
-
+import React, {useState, useEffect} from 'react';
+import { View, Text,TouchableOpacity,StyleSheet,ScrollView, SafeAreaView } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 function StatisticsScreen(props) {
     return (
-        <SafeAreaView style={{flex:1}}>
-            <ScrollView style={Styles.Container}>
-            <Text style={{flex:1, color:"#000", marginTop:50, fontSize:24, justifyContent:'center', alignSelf:'center'}}>
-                Statistics</Text>
+        <SafeAreaView style={Styles.Container}>
+            <ScrollView>
+                <View style={{flexDirection:'row', marginTop:15,marginBottom:35}}>
+                    <Text style={{fontSize:22, justifyContent:'center', alignSelf:'center', color:'#fff', marginLeft:20}}>Statistics</Text>
+                </View>
             </ScrollView>
         </SafeAreaView>
     );

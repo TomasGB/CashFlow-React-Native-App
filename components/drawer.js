@@ -5,7 +5,6 @@ import { Ionicons } from '@expo/vector-icons';
 import BalanceScreen from '../screens/transactionsScreen';
 import StatisticsScreen from '../screens/statisticsScreen';
 import foto from '../assets/foto.jpg'; 
-import firebase from '../database/firebase'
 import Balance from './balance';
 
 function Home({ navigation }) {

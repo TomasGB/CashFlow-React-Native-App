@@ -9,21 +9,29 @@ function AddTransactionScreen(props) {
         Description:"",
         Amount:"",
         Type:"",
-        dateId: ""
+        dateId: "",
+        Area: ""
     })
 
     const createTransaction = async () =>{
         let date = Date.now();
+        let area = '';
+
+        if (state.Area == ''){ await area == 'others' }
+            else{ await
+                area == state.Area;
+            }
 
         if (state.Description == '' || state.Amount == '' || state.Type == ''){
-            alert('Complete all fields.')
+            alert('Complete all fields with a * .')
         }
         else{
             await firebase.db.collection('transactions').add({
                 Description: state.Description,
                 Amount: state.Amount,
                 Type: state.Type,
-                dateId:date
+                dateId:date,
+                Area: area
             })
             alert('Transaction Added')
             props.navigation.navigate('Home')
@@ -37,19 +45,24 @@ function AddTransactionScreen(props) {
                 Add a new transaction</Text>
                 <View style={Styles.Wrapper}>
                     <View style={Styles.InputGroup}>
-                        <TextInput placeholder='Description'
+                        <TextInput placeholder='Description *'
                             onChangeText={(value) => setState({ ...state, Description: value })}>
                         </TextInput>
                     </View>
                     <View style={Styles.InputGroup}>
-                        <TextInput placeholder='Amount'
+                        <TextInput placeholder='Amount *'
                             keyboardType = 'numeric'
                             onChangeText={(value) => setState({ ...state, Amount: value})}>
                         </TextInput>
                     </View>
                     <View style={Styles.InputGroup}>
-                        <TextInput placeholder='Income / Expense'
+                        <TextInput placeholder='Income / Expense *'
                             onChangeText={(value) => setState({ ...state, Type: value })}>
+                        </TextInput>
+                    </View>
+                    <View style={Styles.InputGroup}>
+                        <TextInput placeholder='Area'
+                            onChangeText={(value) => setState({ ...state, Area: value })}>
                         </TextInput>
                     </View>
                     <View style={{marginTop:15}}>
