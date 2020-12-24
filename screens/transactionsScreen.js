@@ -39,7 +39,6 @@ const BalanceScreen = (props, navigation) =>{
                     renderItem={({item}) =>(
                         <View style={Styles.transactionsView}>
                             <View style={{justifyContent:'space-between',flexDirection:'row'}}>
-                                
                                 <Text style={{alignSelf:'flex-start',fontSize:20, color:'#000', marginBottom:5}}>{item.description}</Text>
                                 <Ionicons name='triangle-sharp' style={[item.type == 'Expense' ? Styles.ArrowExpense: Styles.ArrowIncome]}></Ionicons>
                             </View>

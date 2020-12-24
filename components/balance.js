@@ -1,49 +1,30 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text,} from 'react-native';
-import { State } from 'react-native-gesture-handler';
 import firebase from '../database/firebase'
 
 function Balance(){
-    
-    const [incomes, setIncomes] = useState([]);
-    const [expenses, setExpenses] = useState([]);
+
     const [balance, setBalance] = useState();
     const [totIncome, setTotIncome] =useState();
     const [totExpense, setTotExpense] =useState();
 
         useEffect(() => {
           firebase.db.collection('transactions').orderBy("dateId", "desc").onSnapshot(querySnapshot =>{
-
+            let acumIncome=0;
+            let acumExpenses=0;
               querySnapshot.docs.forEach(doc =>{
-                if (doc.data().Type == 'expense' | doc.data().Type == 'Expense'){
-                  expenses.push({
-                    amount: doc.data().Amount,
-                  })
-                }else{
-                  incomes.push({
-                    amount: doc.data().Amount,
-                  })
-                }
-                let acumIncome=0;
-                let acumExpenses=0;
-
-                for(let i=0; i<=incomes.length-1; i++){
-                    acumIncome = acumIncome + parseFloat(incomes[i].amount);
-                    }
-
-                for(let j=0; j<=expenses.length-1; j++){
-                    acumExpenses = acumExpenses + parseFloat(expenses[j].amount);
-                }
-
-                let finalBal = (acumIncome - acumExpenses);
-                
-                setTotExpense(acumExpenses)
-                setTotIncome(acumIncome)
+              if (doc.data().Type == 'expense' | doc.data().Type == 'Expense'){
+                acumExpenses = acumExpenses + parseFloat(doc.data().Amount); 
+              }else{
+                acumIncome = acumIncome + parseFloat(doc.data().Amount); 
+              }
+              let finalBal = (acumIncome - acumExpenses);
+              
                 setBalance(finalBal)
               });
             
-            setIncomes(incomes)
-            setExpenses(expenses)
+            setTotIncome(acumIncome)
+            setTotExpense(acumExpenses)
               });
       },[]);
     return (

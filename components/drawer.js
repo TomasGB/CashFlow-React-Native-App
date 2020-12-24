@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react';
 import { View, Text,TouchableOpacity,Image,ScrollView } from 'react-native';
 import {createDrawerNavigator,DrawerContentScrollView,DrawerItemList} from '@react-navigation/drawer';
 import { Ionicons } from '@expo/vector-icons';
-import AddTransactionScreen from '../screens/addTransaction'
 import BalanceScreen from '../screens/transactionsScreen';
+import StatisticsScreen from '../screens/statisticsScreen';
 import foto from '../assets/foto.jpg'; 
 import firebase from '../database/firebase'
 import Balance from './balance';
@@ -13,14 +13,16 @@ function Home({ navigation }) {
   return (
         <View style={{ flex: 1, paddingTop:25, backgroundColor:'#3986F9' }}>
           <View>
-            <TouchableOpacity
-                style={{
-                    justifyContent: 'center', alignItems: 'flex-start', paddingLeft:5}} 
-                onPress={() => navigation.openDrawer()}>
-                    <Ionicons name="menu" color='#fff' size={40}/>
-            </TouchableOpacity>
-            <Text style={{fontSize:28, justifyContent:'center', alignItems:'flex-end', color:'#fff' , marginStart:50, paddingTop:0, paddingBottom:50}}>Hello, Tomas</Text>
+            <View style={{flexDirection:'row', marginTop:15,marginBottom:35}}>
+                <TouchableOpacity
+                    style={{
+                        justifyContent: 'center', alignItems: 'flex-start', paddingLeft:5}} 
+                    onPress={() => navigation.openDrawer()}>
+                        <Ionicons name="menu" color='#fff' size={40}/>
+                </TouchableOpacity>
+                <Text style={{fontSize:22, justifyContent:'center', alignSelf:'center', color:'#fff', marginLeft:20}}>Hello, Tomas</Text>
             </View>
+          </View>
             <Image
                 source= {foto} style={{width:150, height:150, borderRadius:80, alignSelf:'center'}}
             />
@@ -51,7 +53,7 @@ function MyDrawer() {
     <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
       <Drawer.Screen name="Home"  component={Home}/>
       <Drawer.Screen name="Transactions" component={BalanceScreen} />
-      <Drawer.Screen name="Add Transaction" component={AddTransactionScreen} />
+      <Drawer.Screen name="Statistics" component={StatisticsScreen} />
     </Drawer.Navigator>
   );
 }
