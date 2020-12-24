@@ -6,51 +6,10 @@ import AddTransactionScreen from '../screens/addTransaction'
 import BalanceScreen from '../screens/transactionsScreen';
 import foto from '../assets/foto.jpg'; 
 import firebase from '../database/firebase'
+import Balance from './balance';
 
 function Home({ navigation }) {
   
-  const makeBalance = ()=>{
-    
-    const [incomes, setIncomes] = useState([]);
-    const [expenses, setExpenses] = useState([]);
-
-      useEffect(() => {
-          firebase.db.collection('transactions').orderBy("dateId", "desc").onSnapshot(querySnapshot =>{
-
-              querySnapshot.docs.forEach(doc =>{
-                if (doc.data().Type == 'expense' | doc.data().Type == 'Expense'){
-                  expenses.push({
-                    amount: doc.data().Amount,
-                  })
-                }else{
-                  incomes.push({
-                    amount: doc.data().Amount,
-                  })
-                }
-                  
-              });
-              setIncomes(incomes)
-              setExpenses(expenses)
-
-              const totIncome = incomes.reduce(function(prev, cur) 
-              {
-                return prev + parseFloat(cur.amount);
-              }, 0); 
-              console.log(totIncome);
-
-              const totExpenses = expenses.reduce(function(prev, cur) 
-              {
-                return prev + parseFloat(cur.amount);
-              }, 0); 
-              console.log(totExpenses);
-              console.log('------------------------');
-              console.log('balance: '+(totIncome-totExpenses));
-              });
-      },[]);
-      return <Text>Bal</Text>
-    }
-    
-
   return (
         <View style={{ flex: 1, paddingTop:25, backgroundColor:'#3986F9' }}>
           <View>
@@ -65,9 +24,11 @@ function Home({ navigation }) {
             <Image
                 source= {foto} style={{width:150, height:150, borderRadius:80, alignSelf:'center'}}
             />
-            <ScrollView  style={{ backgroundColor:'#fff', marginTop:30 , borderTopLeftRadius:15, borderTopRightRadius:15}}>
-              <Text style={{textAlign:'center', margin:30, fontSize:20}}>Your Balance</Text>
-              <Text style={{textAlign:'center', fontSize:16, color:'black'}}>{makeBalance()}</Text>
+            <ScrollView  style={{backgroundColor:'#fff', marginTop:30 , borderTopLeftRadius:15, borderTopRightRadius:15}}>
+
+              <Text style={{textAlign:'center', margin:0}}>
+                <Balance/>
+              </Text>
             </ScrollView>
         </View>
   );

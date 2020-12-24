@@ -5,6 +5,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './screens/homeScreen';
 import AddTransactionScreen from './screens/addTransaction';
 import { Buffer } from 'buffer';
+import { LogBox } from "react-native";
+
+LogBox.ignoreAllLogs(true)
 
 global.Buffer = Buffer;
 

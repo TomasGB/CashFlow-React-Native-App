@@ -26,7 +26,7 @@ function AddTransactionScreen(props) {
                 dateId:date
             })
             alert('Transaction Added')
-            props.navigation.navigate('Transactions')
+            props.navigation.navigate('Home')
         }
     } 
 
