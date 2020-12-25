@@ -9,6 +9,7 @@ import {
     SafeAreaView,
     Alert,
 } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import firebase from "../database/firebase";
 
 function AddTransactionScreen(props) {
@@ -50,57 +51,61 @@ function AddTransactionScreen(props) {
     };
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
-            <ScrollView style={Styles.Container}>
-                <Text
-                    style={{
-                        flex: 1,
-                        color: "#fff",
-                        marginVertical: 35,
-                        fontSize: 24,
-                        justifyContent: "center",
-                        alignSelf: "center",
-                    }}>
-                    Add a new transaction
-                </Text>
-                <View style={Styles.Wrapper}>
-                    <View style={Styles.InputGroup}>
-                        <TextInput
-                            placeholder="Description *"
-                            onChangeText={(value) =>
-                                setState({ ...state, Description: value })
-                            }></TextInput>
+        <LinearGradient
+            colors={["#0464DE", "#3277D0", "#65A8FC"]}
+            style={{ width: "100%", height: "100%" }}>
+            <SafeAreaView style={{ flex: 1 }}>
+                <ScrollView style={Styles.Container}>
+                    <Text
+                        style={{
+                            flex: 1,
+                            color: "#fff",
+                            marginVertical: 35,
+                            fontSize: 24,
+                            justifyContent: "center",
+                            alignSelf: "center",
+                        }}>
+                        Add a new transaction
+                    </Text>
+                    <View style={Styles.Wrapper}>
+                        <View style={Styles.InputGroup}>
+                            <TextInput
+                                placeholder="Description *"
+                                onChangeText={(value) =>
+                                    setState({ ...state, Description: value })
+                                }></TextInput>
+                        </View>
+                        <View style={Styles.InputGroup}>
+                            <TextInput
+                                placeholder="Amount *"
+                                keyboardType="numeric"
+                                onChangeText={(value) =>
+                                    setState({ ...state, Amount: value })
+                                }></TextInput>
+                        </View>
+                        <View style={Styles.InputGroup}>
+                            <TextInput
+                                placeholder="Income / Expense *"
+                                onChangeText={(value) =>
+                                    setState({ ...state, Type: value })
+                                }></TextInput>
+                        </View>
+                        <View style={Styles.InputGroup}>
+                            <TextInput
+                                placeholder="Category"
+                                onChangeText={(value) =>
+                                    setState({ ...state, Category: value })
+                                }></TextInput>
+                        </View>
+                        <View style={{ marginTop: 15 }}>
+                            <Button
+                                title="Add Transaction"
+                                onPress={() => createTransaction()}></Button>
+                        </View>
                     </View>
-                    <View style={Styles.InputGroup}>
-                        <TextInput
-                            placeholder="Amount *"
-                            keyboardType="numeric"
-                            onChangeText={(value) =>
-                                setState({ ...state, Amount: value })
-                            }></TextInput>
-                    </View>
-                    <View style={Styles.InputGroup}>
-                        <TextInput
-                            placeholder="Income / Expense *"
-                            onChangeText={(value) =>
-                                setState({ ...state, Type: value })
-                            }></TextInput>
-                    </View>
-                    <View style={Styles.InputGroup}>
-                        <TextInput
-                            placeholder="Category"
-                            onChangeText={(value) =>
-                                setState({ ...state, Category: value })
-                            }></TextInput>
-                    </View>
-                    <View style={{ marginTop: 15 }}>
-                        <Button
-                            title="Add Transaction"
-                            onPress={() => createTransaction()}></Button>
-                    </View>
-                </View>
-            </ScrollView>
-        </SafeAreaView>
+                </ScrollView>
+            </SafeAreaView>
+        </LinearGradient>
     );
 }
 
@@ -108,7 +113,6 @@ const Styles = StyleSheet.create({
     Container: {
         flex: 1,
         paddingVertical: 80,
-        backgroundColor: "#3986F9",
     },
     Wrapper: {
         margin: 10,

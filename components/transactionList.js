@@ -24,7 +24,6 @@ function TransactionList() {
                     });
                 });
                 setTransactions(transactions);
-                console.log(transactions);
             });
     }, []);
 
@@ -66,7 +65,7 @@ function TransactionList() {
                                 color: "#000000",
                                 marginLeft: 5,
                             }}>
-                            {item.amount}
+                            {"$ " + item.amount}
                         </Text>
                     </View>
                 )}

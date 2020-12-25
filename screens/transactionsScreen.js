@@ -8,6 +8,7 @@ import {
     TouchableOpacity,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 import firebase from "../database/firebase";
 
 const BalanceScreen = (props) => {
@@ -31,102 +32,109 @@ const BalanceScreen = (props) => {
                     });
                 });
                 setTransactions(transactions);
-                console.log(transactions);
             });
     }, []);
 
     return (
-        <SafeAreaView style={{ flex: 1, paddingTop: 0 }}>
-            <View style={Styles.Container}>
-                <View>
+        <LinearGradient
+            colors={["#0464DE", "#3277D0", "#65A8FC"]}
+            style={{ width: "100%", height: "100%" }}>
+            <SafeAreaView style={{ flex: 1, paddingTop: 0 }}>
+                <View style={Styles.Container}>
+                    <View>
+                        <View
+                            style={{
+                                flexDirection: "row",
+                                marginTop: 15,
+                                marginBottom: 5,
+                            }}>
+                            <TouchableOpacity
+                                style={{
+                                    justifyContent: "center",
+                                    alignItems: "flex-start",
+                                    paddingLeft: 5,
+                                    marginLeft: 10,
+                                }}
+                                onPress={() =>
+                                    props.navigation.navigate("Home")
+                                }>
+                                <Ionicons
+                                    name="arrow-back"
+                                    color="#fff"
+                                    size={20}
+                                />
+                            </TouchableOpacity>
+                            <Text
+                                style={{
+                                    fontSize: 22,
+                                    justifyContent: "center",
+                                    alignSelf: "center",
+                                    color: "#fff",
+                                    marginLeft: 10,
+                                }}>
+                                Your transactions
+                            </Text>
+                        </View>
+                    </View>
                     <View
                         style={{
-                            flexDirection: "row",
-                            marginTop: 15,
-                            marginBottom: 5,
+                            maxHeight: 400,
+                            marginVertical: 25,
+                            marginHorizontal: 20,
                         }}>
-                        <TouchableOpacity
-                            style={{
-                                justifyContent: "center",
-                                alignItems: "flex-start",
-                                paddingLeft: 5,
-                                marginLeft: 10,
-                            }}
-                            onPress={() => props.navigation.navigate("Home")}>
-                            <Ionicons
-                                name="arrow-back"
-                                color="#fff"
-                                size={20}
-                            />
-                        </TouchableOpacity>
-                        <Text
-                            style={{
-                                fontSize: 22,
-                                justifyContent: "center",
-                                alignSelf: "center",
-                                color: "#fff",
-                                marginLeft: 10,
-                            }}>
-                            Your transactions
-                        </Text>
-                    </View>
-                </View>
-                <View
-                    style={{
-                        maxHeight: 400,
-                        marginVertical: 25,
-                        marginHorizontal: 20,
-                    }}>
-                    <FlatList
-                        data={transactions}
-                        renderItem={({ item }) => (
-                            <View style={Styles.transactionsView}>
-                                <View
-                                    style={{
-                                        justifyContent: "space-between",
-                                        flexDirection: "row",
-                                    }}>
+                        <FlatList
+                            data={transactions}
+                            renderItem={({ item }) => (
+                                <View style={Styles.transactionsView}>
+                                    <View
+                                        style={{
+                                            justifyContent: "space-between",
+                                            flexDirection: "row",
+                                        }}>
+                                        <Text
+                                            style={{
+                                                alignSelf: "flex-start",
+                                                fontSize: 20,
+                                                color: "#000",
+                                                marginBottom: 5,
+                                            }}>
+                                            {item.description}
+                                        </Text>
+                                        <Ionicons
+                                            name="triangle-sharp"
+                                            style={[
+                                                item.type == "Expense"
+                                                    ? Styles.ArrowExpense
+                                                    : Styles.ArrowIncome,
+                                            ]}></Ionicons>
+                                    </View>
                                     <Text
                                         style={{
-                                            alignSelf: "flex-start",
-                                            fontSize: 20,
-                                            color: "#000",
-                                            marginBottom: 5,
+                                            fontSize: 16,
+                                            color: "#fff",
+                                            marginLeft: 5,
                                         }}>
-                                        {item.description}
+                                        {"$ " + item.amount}
                                     </Text>
-                                    <Ionicons
-                                        name="triangle-sharp"
-                                        style={[
-                                            item.type == "Expense"
-                                                ? Styles.ArrowExpense
-                                                : Styles.ArrowIncome,
-                                        ]}></Ionicons>
                                 </View>
-                                <Text
-                                    style={{
-                                        fontSize: 16,
-                                        color: "#fff",
-                                        marginLeft: 5,
-                                    }}>
-                                    {item.amount}
-                                </Text>
-                            </View>
-                        )}
-                    />
+                            )}
+                        />
+                    </View>
+                    <TouchableOpacity
+                        style={Styles.Btn}
+                        onPress={() =>
+                            props.navigation.navigate("addTransaction")
+                        }>
+                        <Ionicons
+                            name="add-outline"
+                            style={{
+                                color: "#FFFFFF",
+                                fontSize: 30,
+                            }}></Ionicons>
+                    </TouchableOpacity>
                 </View>
-                <TouchableOpacity
-                    style={Styles.Btn}
-                    onPress={() => props.navigation.navigate("addTransaction")}>
-                    <Ionicons
-                        name="add-outline"
-                        style={{
-                            color: "#FFFFFF",
-                            fontSize: 30,
-                        }}></Ionicons>
-                </TouchableOpacity>
-            </View>
-        </SafeAreaView>
+            </SafeAreaView>
+        </LinearGradient>
     );
 };
 
@@ -134,7 +142,6 @@ const Styles = StyleSheet.create({
     Container: {
         flex: 1,
         paddingVertical: 35,
-        backgroundColor: "#3986F9",
     },
     transactionsView: {
         backgroundColor: "rgba(134, 216, 247 , 0.2)",
