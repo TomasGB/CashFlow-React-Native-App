@@ -17,7 +17,7 @@ function AddTransactionScreen(props) {
         Amount: "",
         Type: "",
         dateId: "",
-        Area: "",
+        Category: "",
     });
 
     const createTransaction = async () => {
@@ -38,7 +38,7 @@ function AddTransactionScreen(props) {
                 Amount: state.Amount,
                 Type: state.Type,
                 dateId: date,
-                Area: area,
+                Category: Category,
             });
             Alert.alert("Transaction", "New transaction added.", [
                 {
@@ -88,9 +88,9 @@ function AddTransactionScreen(props) {
                     </View>
                     <View style={Styles.InputGroup}>
                         <TextInput
-                            placeholder="Area"
+                            placeholder="Category"
                             onChangeText={(value) =>
-                                setState({ ...state, Area: value })
+                                setState({ ...state, Category: value })
                             }></TextInput>
                     </View>
                     <View style={{ marginTop: 15 }}>

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
     View,
     Text,
-    Button,
     StyleSheet,
     SafeAreaView,
     FlatList,
@@ -10,14 +9,8 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import firebase from "../database/firebase";
-import {
-    createDrawerNavigator,
-    DrawerContentScrollView,
-    DrawerItemList,
-} from "@react-navigation/drawer";
-import { NavigationContainer } from "@react-navigation/native";
 
-const BalanceScreen = (props, navigation) => {
+const BalanceScreen = (props) => {
     const [transactions, setTransactions] = useState([]);
 
     useEffect(() => {
@@ -34,7 +27,7 @@ const BalanceScreen = (props, navigation) => {
                         amount: doc.data().Amount,
                         type: doc.data().Type,
                         dateId: doc.data().dateId,
-                        area: doc.data().Area,
+                        category: doc.data().Category,
                     });
                 });
                 setTransactions(transactions);

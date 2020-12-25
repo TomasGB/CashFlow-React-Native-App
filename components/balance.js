@@ -39,20 +39,26 @@ function Balance() {
                 <Text
                     style={{
                         textAlign: "center",
-                        marginTop: 25,
+                        marginTop: 5,
                         marginBottom: 5,
-                        fontSize: 20,
+                        fontSize: 16,
+                        color: "grey",
                     }}>
                     Your Balance
                 </Text>
-                <Text style={{ fontSize: 20, textAlign: "center" }}>
+                <Text style={{ fontSize: 30, textAlign: "center" }}>
                     {balance}
                 </Text>
             </View>
             <View style={{ marginVertical: 20, flexDirection: "row" }}>
                 <View style={{ flexDirection: "row" }}>
                     <View style={{ alignItems: "center" }}>
-                        <Text style={{ fontSize: 18, marginHorizontal: 15 }}>
+                        <Text
+                            style={{
+                                fontSize: 16,
+                                marginHorizontal: 15,
+                                color: "grey",
+                            }}>
                             Income
                         </Text>
                         <Text
@@ -62,7 +68,12 @@ function Balance() {
                             }}>{`+ ${totIncome}`}</Text>
                     </View>
                     <View style={{ alignItems: "center" }}>
-                        <Text style={{ fontSize: 18, marginHorizontal: 15 }}>
+                        <Text
+                            style={{
+                                fontSize: 16,
+                                marginHorizontal: 15,
+                                color: "grey",
+                            }}>
                             Expenses
                         </Text>
                         <Text

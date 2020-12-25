@@ -10,6 +10,7 @@ import BalanceScreen from "../screens/transactionsScreen";
 import StatisticsScreen from "../screens/statisticsScreen";
 import foto from "../assets/foto.jpg";
 import Balance from "./balance";
+import TransactionList from "../components/transactionList";
 
 function Home({ navigation }) {
     return (
@@ -58,9 +59,27 @@ function Home({ navigation }) {
                     borderTopLeftRadius: 15,
                     borderTopRightRadius: 15,
                 }}>
-                <Text style={{ textAlign: "center", margin: 0 }}>
+                <Text
+                    style={{
+                        margin: 0,
+                        justifyContent: "center",
+                        alignSelf: "center",
+                    }}>
                     <Balance />
                 </Text>
+                <View>
+                    <Text
+                        style={{ color: "grey", fontSize: 16, marginLeft: 15 }}>
+                        Latest transactions
+                    </Text>
+                    <TransactionList />
+                </View>
+                <View>
+                    <Text
+                        style={{ color: "grey", fontSize: 16, marginLeft: 15 }}>
+                        Analytics summary
+                    </Text>
+                </View>
             </ScrollView>
         </View>
     );
