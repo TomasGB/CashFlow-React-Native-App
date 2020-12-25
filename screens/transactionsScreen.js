@@ -6,9 +6,16 @@ import {
     StyleSheet,
     SafeAreaView,
     FlatList,
+    TouchableOpacity,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import firebase from "../database/firebase";
+import {
+    createDrawerNavigator,
+    DrawerContentScrollView,
+    DrawerItemList,
+} from "@react-navigation/drawer";
+import { NavigationContainer } from "@react-navigation/native";
 
 const BalanceScreen = (props, navigation) => {
     const [transactions, setTransactions] = useState([]);
@@ -38,21 +45,43 @@ const BalanceScreen = (props, navigation) => {
     return (
         <SafeAreaView style={{ flex: 1, paddingTop: 0 }}>
             <View style={Styles.Container}>
-                <View style={{ paddingBottom: 15 }}>
-                    <Text
+                <View>
+                    <View
                         style={{
-                            marginTop: 25,
-                            fontSize: 24,
-                            textAlign: "center",
-                            color: "#fff",
+                            flexDirection: "row",
+                            marginTop: 15,
+                            marginBottom: 5,
                         }}>
-                        Your Transactions
-                    </Text>
+                        <TouchableOpacity
+                            style={{
+                                justifyContent: "center",
+                                alignItems: "flex-start",
+                                paddingLeft: 5,
+                                marginLeft: 10,
+                            }}
+                            onPress={() => props.navigation.navigate("Home")}>
+                            <Ionicons
+                                name="arrow-back"
+                                color="#fff"
+                                size={20}
+                            />
+                        </TouchableOpacity>
+                        <Text
+                            style={{
+                                fontSize: 22,
+                                justifyContent: "center",
+                                alignSelf: "center",
+                                color: "#fff",
+                                marginLeft: 10,
+                            }}>
+                            Your transactions
+                        </Text>
+                    </View>
                 </View>
                 <View
                     style={{
                         maxHeight: 400,
-                        marginVertical: 35,
+                        marginVertical: 25,
                         marginHorizontal: 20,
                     }}>
                     <FlatList
@@ -93,12 +122,16 @@ const BalanceScreen = (props, navigation) => {
                         )}
                     />
                 </View>
-
-                <Button
-                    title="Add new Transaction"
-                    color="#609CF4"
-                    onPress={() => props.navigation.navigate("addTransaction")}
-                />
+                <TouchableOpacity
+                    style={Styles.Btn}
+                    onPress={() => props.navigation.navigate("addTransaction")}>
+                    <Ionicons
+                        name="add-outline"
+                        style={{
+                            color: "#FFFFFF",
+                            fontSize: 30,
+                        }}></Ionicons>
+                </TouchableOpacity>
             </View>
         </SafeAreaView>
     );
@@ -129,6 +162,18 @@ const Styles = StyleSheet.create({
         alignSelf: "flex-end",
         alignItems: "center",
         color: "green",
+    },
+    Btn: {
+        backgroundColor: "rgba(134, 216, 247 , 0.5)",
+        alignItems: "center",
+        justifyContent: "center",
+        marginLeft: "40%",
+        padding: 15,
+        width: 65,
+        borderColor: "#ffffff",
+        borderWidth: 2,
+        borderRadius: 100,
+        marginBottom: 15,
     },
 });
 

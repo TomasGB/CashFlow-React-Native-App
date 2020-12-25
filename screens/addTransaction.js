@@ -7,6 +7,7 @@ import {
     ScrollView,
     StyleSheet,
     SafeAreaView,
+    Alert,
 } from "react-native";
 import firebase from "../database/firebase";
 
@@ -39,8 +40,12 @@ function AddTransactionScreen(props) {
                 dateId: date,
                 Area: area,
             });
-            alert("Transaction Added");
-            props.navigation.navigate("Home");
+            Alert.alert("Transaction", "New transaction added.", [
+                {
+                    text: "OK",
+                    onPress: () => props.navigation.navigate("Home"),
+                },
+            ]);
         }
     };
 
