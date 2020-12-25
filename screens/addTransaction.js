@@ -22,12 +22,12 @@ function AddTransactionScreen(props) {
 
     const createTransaction = async () => {
         let date = Date.now();
-        let area = "";
+        let Category = "";
 
-        if (state.Area == "") {
-            (await area) == "others";
+        if (state.Category == "") {
+            (await Category) == "others";
         } else {
-            (await area) == state.Area;
+            (await Category) == state.Category;
         }
 
         if (state.Description == "" || state.Amount == "" || state.Type == "") {
