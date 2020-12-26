@@ -10,6 +10,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import IncomeGraph from "../components/incomeGraph";
+import ExpenseGraph from "../components/expensesGraph";
 
 function AnalyticsScreen(props) {
     return (
@@ -53,6 +54,7 @@ function AnalyticsScreen(props) {
                             </Text>
                         </View>
                         <IncomeGraph></IncomeGraph>
+                        <ExpenseGraph></ExpenseGraph>
                     </View>
                 </ScrollView>
             </SafeAreaView>

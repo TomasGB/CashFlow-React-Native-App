@@ -67,13 +67,13 @@ const BalanceScreen = (props) => {
                             </TouchableOpacity>
                             <Text
                                 style={{
-                                    fontSize: 22,
+                                    fontSize: 20,
                                     justifyContent: "center",
                                     alignSelf: "center",
                                     color: "#fff",
                                     marginLeft: 10,
                                 }}>
-                                Your transactions
+                                Your transactions history
                             </Text>
                         </View>
                     </View>

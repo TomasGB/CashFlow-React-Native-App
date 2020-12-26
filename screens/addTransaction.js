@@ -41,7 +41,7 @@ function AddTransactionScreen(props) {
             today.getSeconds();
 
         if (state.Category == "") {
-            category = "others";
+            category = "Others";
         } else {
             category = state.Category;
         }
