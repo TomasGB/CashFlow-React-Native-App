@@ -92,14 +92,14 @@ const Styles = StyleSheet.create({
         fontSize: 16,
         alignSelf: "flex-end",
         alignItems: "center",
-        color: "red",
+        color: "#D12820",
         transform: [{ rotateX: "180deg" }],
     },
     ArrowIncome: {
         fontSize: 16,
         alignSelf: "flex-end",
         alignItems: "center",
-        color: "green",
+        color: "#2B9B2A",
     },
     Btn: {
         backgroundColor: "rgba(134, 216, 247 , 0.5)",
