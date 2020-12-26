@@ -31,8 +31,8 @@ function TransactionList() {
         <View style={{ flex: 1, justifyContent: "center", padding: 15 }}>
             <FlatList
                 data={transactions}
-                maxToRenderPerBatch={3}
-                initialNumToRender={3}
+                maxToRenderPerBatch={2}
+                initialNumToRender={2}
                 horizontal={true}
                 renderItem={({ item }) => (
                     <View style={Styles.transactionsView}>

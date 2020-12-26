@@ -18,17 +18,32 @@ function AddTransactionScreen(props) {
         Amount: "",
         Type: "",
         dateId: "",
+        DateString: "",
         Category: "",
     });
 
     const createTransaction = async () => {
         let date = Date.now();
-        let Category = "";
+        let category = " ";
+        let today = new Date();
+        let dateString =
+            today.getMonth() +
+            1 +
+            "-" +
+            today.getDate() +
+            "-" +
+            today.getFullYear() +
+            "  " +
+            today.getHours() +
+            ":" +
+            today.getMinutes() +
+            ":" +
+            today.getSeconds();
 
         if (state.Category == "") {
-            (await Category) == "others";
+            category = "others";
         } else {
-            (await Category) == state.Category;
+            category = state.Category;
         }
 
         if (state.Description == "" || state.Amount == "" || state.Type == "") {
@@ -39,7 +54,8 @@ function AddTransactionScreen(props) {
                 Amount: state.Amount,
                 Type: state.Type,
                 dateId: date,
-                Category: Category,
+                DateString: dateString,
+                Category: category,
             });
             Alert.alert("Transaction", "New transaction added.", [
                 {

@@ -28,6 +28,7 @@ const BalanceScreen = (props) => {
                         amount: doc.data().Amount,
                         type: doc.data().Type,
                         dateId: doc.data().dateId,
+                        dateString: doc.data().DateString,
                         category: doc.data().Category,
                     });
                 });
@@ -97,6 +98,7 @@ const BalanceScreen = (props) => {
                                                 fontSize: 20,
                                                 color: "#000",
                                                 marginBottom: 5,
+                                                marginVertical: 5,
                                             }}>
                                             {item.description}
                                         </Text>
@@ -111,10 +113,29 @@ const BalanceScreen = (props) => {
                                     <Text
                                         style={{
                                             fontSize: 16,
-                                            color: "#fff",
+                                            color: "rgba(255, 255, 255, 0.5)",
                                             marginLeft: 5,
+                                            marginVertical: 5,
                                         }}>
-                                        {"$ " + item.amount}
+                                        {item.category}
+                                    </Text>
+                                    <Text
+                                        style={{
+                                            fontSize: 16,
+                                            color: "rgba(255, 255, 255, 0.5)",
+                                            marginLeft: 5,
+                                            marginVertical: 5,
+                                        }}>
+                                        {"$" + item.amount}
+                                    </Text>
+                                    <Text
+                                        style={{
+                                            fontSize: 12,
+                                            color: "rgba(255, 255, 255, 0.5)",
+                                            marginLeft: 5,
+                                            marginVertical: 5,
+                                        }}>
+                                        {item.dateString}
                                     </Text>
                                 </View>
                             )}
