@@ -10,6 +10,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import firebase from "../database/firebase";
+import { Alert } from "react-native";
 
 const BalanceScreen = (props) => {
     const [transactions, setTransactions] = useState([]);
@@ -35,6 +36,19 @@ const BalanceScreen = (props) => {
                 setTransactions(transactions);
             });
     }, []);
+
+    const deleteTransaction = async (id) => {
+        await firebase.db
+            .collection("transactions")
+            .doc(id)
+            .delete()
+            .then(function () {
+                Alert.alert("Transaction successfully deleted!");
+            })
+            .catch(function (error) {
+                Alert.alert("Error removing transaction: ", error);
+            });
+    };
 
     return (
         <LinearGradient
@@ -139,6 +153,24 @@ const BalanceScreen = (props) => {
                                         }}>
                                         {item.dateString}
                                     </Text>
+                                    <View>
+                                        <TouchableOpacity
+                                            style={{
+                                                justifyContent: "center",
+                                                alignItems: "flex-end",
+                                                paddingLeft: 5,
+                                                marginLeft: 10,
+                                            }}
+                                            onPress={() => {
+                                                deleteTransaction(item.id);
+                                            }}>
+                                            <Ionicons
+                                                name="trash-outline"
+                                                color="#000"
+                                                size={20}
+                                            />
+                                        </TouchableOpacity>
+                                    </View>
                                 </View>
                             )}
                         />

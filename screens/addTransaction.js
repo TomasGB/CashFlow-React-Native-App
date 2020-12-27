@@ -58,7 +58,7 @@ function AddTransactionScreen(props) {
                 DateString: dateString,
                 Category: category,
             });
-            Alert.alert("Transaction", "New transaction added.", [
+            Alert.alert("New transaction added.", [
                 {
                     text: "OK",
                     onPress: () => props.navigation.navigate("Home"),
