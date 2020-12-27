@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { View, Text, FlatList, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import firebase from "../database/firebase";
+import { Picker } from "@react-native-picker/picker";
+import { State } from "react-native-gesture-handler";
 
 function ExpenseGraph() {
     const [Expense, setExpense] = useState(0);
@@ -9,6 +11,7 @@ function ExpenseGraph() {
     const [foodExpense, setFoodExpense] = useState(0);
     const [carExpense, setCarExpense] = useState(0);
     const [otherExpense, setOtherExpense] = useState(0);
+    const [Month, setMonth] = useState(" ");
 
     useEffect(() => {
         firebase.db
@@ -53,6 +56,7 @@ function ExpenseGraph() {
                 setOtherExpense(otherExpenseAcum);
             });
     }, []);
+
     return (
         <View style={{ flex: 1, justifyContent: "flex-start", margin: 10 }}>
             <View

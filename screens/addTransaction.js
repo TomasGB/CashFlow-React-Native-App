@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import firebase from "../database/firebase";
+import { Picker } from "@react-native-picker/picker";
 
 function AddTransactionScreen(props) {
     const [state, setState] = useState({
@@ -24,7 +25,7 @@ function AddTransactionScreen(props) {
 
     const createTransaction = async () => {
         let date = Date.now();
-        let category = " ";
+        let category = "";
         let today = new Date();
         let dateString =
             today.getMonth() +
@@ -65,7 +66,7 @@ function AddTransactionScreen(props) {
             ]);
         }
     };
-
+    console.log(state);
     return (
         <LinearGradient
             colors={["#0464DE", "#3277D0", "#65A8FC"]}
@@ -106,13 +107,25 @@ function AddTransactionScreen(props) {
                                     setState({ ...state, Type: value })
                                 }></TextInput>
                         </View>
-                        <View style={Styles.InputGroup}>
-                            <TextInput
-                                placeholder="Category"
-                                onChangeText={(value) =>
-                                    setState({ ...state, Category: value })
-                                }></TextInput>
-                        </View>
+                        <Picker
+                            selectedValue={state.Category}
+                            style={{ height: 50, width: 250 }}
+                            onValueChange={(itemValue) => {
+                                setState({ ...state, Category: itemValue });
+                            }}>
+                            <Picker.Item label="Other" value="Others" />
+                            <Picker.Item label="Bills" value="Bills" />
+                            <Picker.Item label="Food" value="Food" />
+                            <Picker.Item
+                                label="Car Expenses"
+                                value="Car expenses"
+                            />
+                            <Picker.Item label="Work" value="Work" />
+                            <Picker.Item
+                                label="Investments"
+                                value="Investments"
+                            />
+                        </Picker>
                         <View style={{ marginTop: 15 }}>
                             <Button
                                 title="Add Transaction"
