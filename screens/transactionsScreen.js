@@ -126,31 +126,13 @@ const BalanceScreen = (props) => {
                                                     : Styles.ArrowIncome,
                                             ]}></Ionicons>
                                     </View>
-                                    <Text
-                                        style={{
-                                            fontSize: 16,
-                                            color: "rgba(255, 255, 255, 0.5)",
-                                            marginLeft: 5,
-                                            marginVertical: 5,
-                                        }}>
+                                    <Text style={Styles.Text2}>
                                         {item.category}
                                     </Text>
-                                    <Text
-                                        style={{
-                                            fontSize: 16,
-                                            color: "rgba(255, 255, 255, 0.5)",
-                                            marginLeft: 5,
-                                            marginVertical: 5,
-                                        }}>
+                                    <Text style={Styles.Text2}>
                                         {"$" + item.amount}
                                     </Text>
-                                    <Text
-                                        style={{
-                                            fontSize: 12,
-                                            color: "rgba(255, 255, 255, 0.5)",
-                                            marginLeft: 5,
-                                            marginVertical: 5,
-                                        }}>
+                                    <Text style={Styles.Text1}>
                                         {item.dateString}
                                     </Text>
                                     <View>
@@ -229,6 +211,18 @@ const Styles = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 100,
         marginBottom: 15,
+    },
+    Text1: {
+        fontSize: 12,
+        color: "rgba(255, 255, 255, 0.5)",
+        marginLeft: 5,
+        marginVertical: 5,
+    },
+    Text2: {
+        fontSize: 16,
+        color: "rgba(255, 255, 255, 0.5)",
+        marginLeft: 5,
+        marginVertical: 5,
     },
 });
 

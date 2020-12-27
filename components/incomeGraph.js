@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import firebase from "../database/firebase";
 
@@ -54,143 +54,104 @@ function IncomeGraph() {
                     borderRadius: 5,
                     padding: 15,
                 }}>
-                <View
-                    style={{
-                        alignSelf: "flex-start",
-                        marginVertical: 5,
-                        color: "#ffffff",
-                    }}>
-                    <Text
-                        style={{
-                            alignSelf: "flex-start",
-                            color: "#000000",
-                            fontSize: 20,
-                            fontWeight: "700",
-                            marginBottom: 5,
-                        }}>
-                        Incomes
-                    </Text>
-                    <View
-                        style={{
-                            alignSelf: "flex-start",
-                            color: "#000000",
-                            flexDirection: "row",
-                        }}>
-                        <Ionicons name="folder-outline" size={20}></Ionicons>
-                        <Text
+                <Text style={Styles.IncomeTitle}>Incomes</Text>
+                <View style={{ flexDirection: "row" }}>
+                    <View style={Styles.Category}>
+                        <View
                             style={{
                                 alignSelf: "flex-start",
                                 color: "#000000",
-                                fontSize: 16,
-                                fontWeight: "700",
-                                marginLeft: 5,
+                                flexDirection: "row",
                             }}>
-                            Work
+                            <Ionicons
+                                name="folder-outline"
+                                size={20}></Ionicons>
+                            <Text style={Styles.TitleText}>Work</Text>
+                        </View>
+                        <Text style={Styles.Text}>
+                            {((workIncome * 100) / income).toFixed(2)} %
+                        </Text>
+                        <Text style={Styles.Text}>
+                            ${workIncome.toFixed(2)}
                         </Text>
                     </View>
-                    <Text
-                        style={{
-                            alignSelf: "flex-start",
-                            color: "#ffffff",
-                            marginVertical: 2,
-                            fontSize: 14,
-                        }}>
-                        {((workIncome * 100) / income).toFixed(2)} %
-                    </Text>
-                    <Text
-                        style={{
-                            alignSelf: "flex-start",
-                            color: "#ffffff",
-                            marginVertical: 2,
-                        }}>
-                        ${workIncome.toFixed(2)}
-                    </Text>
+                    <View style={Styles.Category}>
+                        <View
+                            style={{
+                                alignSelf: "flex-start",
+                                color: "#000000",
+                                flexDirection: "row",
+                            }}>
+                            <Ionicons name="cash-outline" size={20}></Ionicons>
+                            <Text style={Styles.TitleText}>Investments</Text>
+                        </View>
+                        <Text style={Styles.Text}>
+                            {((investmensIncome * 100) / income).toFixed(2)} %
+                        </Text>
+                        <Text style={Styles.Text}>
+                            ${investmensIncome.toFixed(2)}
+                        </Text>
+                    </View>
+                    <View style={Styles.Category}>
+                        <View
+                            style={{
+                                alignSelf: "flex-start",
+                                color: "#000000",
+                                flexDirection: "row",
+                            }}>
+                            <Ionicons name="question" size={20}></Ionicons>
+                            <Text style={Styles.TitleText}>Others</Text>
+                        </View>
+                        <Text style={Styles.Text}>
+                            {((otherIncome * 100) / income).toFixed(2)} %
+                        </Text>
+                        <Text style={Styles.Text}>
+                            ${otherIncome.toFixed(2)}
+                        </Text>
+                    </View>
                 </View>
-                <View
-                    style={{
-                        alignSelf: "flex-start",
-                        color: "#ffffff",
-                        marginVertical: 5,
-                    }}>
-                    <View
-                        style={{
-                            alignSelf: "flex-start",
-                            color: "#000000",
-                            flexDirection: "row",
-                        }}>
-                        <Ionicons name="cash-outline" size={20}></Ionicons>
-                        <Text
-                            style={{
-                                alignSelf: "flex-start",
-                                color: "#000000",
-                                fontSize: 16,
-                                fontWeight: "700",
-                                marginLeft: 5,
-                            }}>
-                            Investments
-                        </Text>
-                    </View>
+                <View>
                     <Text
                         style={{
-                            alignSelf: "flex-start",
-                            color: "#ffffff",
-                            marginVertical: 2,
+                            padding: 10,
+                            backgroundColor: "lightblue",
+                            height: 200,
+                            marginTop: 10,
                         }}>
-                        {((investmensIncome * 100) / income).toFixed(2)} %
-                    </Text>
-                    <Text
-                        style={{
-                            alignSelf: "flex-start",
-                            color: "#ffffff",
-                            marginVertical: 2,
-                        }}>
-                        ${investmensIncome.toFixed(2)}
-                    </Text>
-                </View>
-                <View
-                    style={{
-                        alignSelf: "flex-start",
-                        color: "#ffffff",
-                        marginVertical: 5,
-                    }}>
-                    <View
-                        style={{
-                            alignSelf: "flex-start",
-                            color: "#000000",
-                            flexDirection: "row",
-                        }}>
-                        <Ionicons name="question" size={20}></Ionicons>
-                        <Text
-                            style={{
-                                alignSelf: "flex-start",
-                                color: "#000000",
-                                fontSize: 16,
-                                fontWeight: "700",
-                                marginLeft: 5,
-                            }}>
-                            Others
-                        </Text>
-                    </View>
-                    <Text
-                        style={{
-                            alignSelf: "flex-start",
-                            color: "#ffffff",
-                            marginVertical: 2,
-                        }}>
-                        {((otherIncome * 100) / income).toFixed(2)} %
-                    </Text>
-                    <Text
-                        style={{
-                            alignSelf: "flex-start",
-                            color: "#ffffff",
-                            marginVertical: 2,
-                        }}>
-                        ${otherIncome.toFixed(2)}
+                        income Graphs
                     </Text>
                 </View>
             </View>
         </View>
     );
 }
+
+const Styles = StyleSheet.create({
+    TitleText: {
+        alignSelf: "flex-start",
+        color: "#000000",
+        fontSize: 16,
+        fontWeight: "700",
+        marginLeft: 5,
+    },
+    Text: {
+        alignSelf: "center",
+        color: "#ffffff",
+        marginVertical: 2,
+    },
+    IncomeTitle: {
+        alignSelf: "flex-start",
+        color: "#000000",
+        fontSize: 20,
+        fontWeight: "700",
+        marginBottom: 10,
+    },
+    Category: {
+        alignSelf: "flex-start",
+        color: "#ffffff",
+        marginVertical: 5,
+        marginRight: 15,
+    },
+});
 
 export default IncomeGraph;

@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import firebase from "../database/firebase";
-import { Picker } from "@react-native-picker/picker";
-import { State } from "react-native-gesture-handler";
 
 function ExpenseGraph() {
     const [Expense, setExpense] = useState(0);
@@ -66,185 +64,126 @@ function ExpenseGraph() {
                     borderRadius: 5,
                     padding: 15,
                 }}>
+                <Text style={Styles.ExpensesTitle}>Expenses</Text>
                 <View
                     style={{
-                        alignSelf: "flex-start",
-                        marginVertical: 5,
-                        color: "#ffffff",
+                        flexDirection: "row",
                     }}>
-                    <Text
-                        style={{
-                            alignSelf: "flex-start",
-                            color: "#000000",
-                            fontSize: 20,
-                            fontWeight: "700",
-                            marginBottom: 5,
-                        }}>
-                        Expenses
-                    </Text>
-                    <View
-                        style={{
-                            alignSelf: "flex-start",
-                            color: "#000000",
-                            flexDirection: "row",
-                        }}>
-                        <Ionicons
-                            name="document-text-outline"
-                            size={20}></Ionicons>
-                        <Text
+                    <View style={Styles.Category}>
+                        <View
                             style={{
                                 alignSelf: "flex-start",
                                 color: "#000000",
-                                fontSize: 16,
-                                fontWeight: "700",
-                                marginLeft: 5,
+                                flexDirection: "row",
                             }}>
-                            Bills
+                            <Ionicons
+                                name="document-text-outline"
+                                size={20}></Ionicons>
+                            <Text style={Styles.TitleText}>Bills</Text>
+                        </View>
+                        <Text style={Styles.Text}>
+                            {((billsExpense * 100) / Expense).toFixed(2)} %
+                        </Text>
+                        <Text style={Styles.Text}>
+                            ${billsExpense.toFixed(2)}
                         </Text>
                     </View>
-                    <Text
-                        style={{
-                            alignSelf: "flex-start",
-                            color: "#ffffff",
-                            marginVertical: 2,
-                        }}>
-                        {((billsExpense * 100) / Expense).toFixed(2)} %
-                    </Text>
-                    <Text
-                        style={{
-                            alignSelf: "flex-start",
-                            color: "#ffffff",
-                            marginVertical: 2,
-                        }}>
-                        ${billsExpense.toFixed(2)}
-                    </Text>
+                    <View style={Styles.Category}>
+                        <View
+                            style={{
+                                alignSelf: "flex-start",
+                                color: "#000000",
+                                flexDirection: "row",
+                            }}>
+                            <Ionicons
+                                name="fast-food-outline"
+                                size={20}></Ionicons>
+                            <Text style={Styles.TitleText}>Food</Text>
+                        </View>
+                        <Text style={Styles.Text}>
+                            {((foodExpense * 100) / Expense).toFixed(2)} %
+                        </Text>
+                        <Text style={Styles.Text}>
+                            ${foodExpense.toFixed(2)}
+                        </Text>
+                    </View>
+                    <View style={Styles.Category}>
+                        <View
+                            style={{
+                                alignSelf: "flex-start",
+                                color: "#000000",
+                                flexDirection: "row",
+                            }}>
+                            <Ionicons name="car-outline" size={20}></Ionicons>
+                            <Text style={Styles.TitleText}>Car</Text>
+                        </View>
+                        <Text style={Styles.Text}>
+                            {((carExpense * 100) / Expense).toFixed(2)} %
+                        </Text>
+                        <Text style={Styles.Text}>
+                            ${carExpense.toFixed(2)}
+                        </Text>
+                    </View>
+                    <View style={Styles.Category}>
+                        <View
+                            style={{
+                                alignSelf: "flex-start",
+                                color: "#000000",
+                                flexDirection: "row",
+                            }}>
+                            <Ionicons name="question" size={20}></Ionicons>
+                            <Text style={Styles.TitleText}>Others</Text>
+                        </View>
+                        <Text style={Styles.Text}>
+                            {((otherExpense * 100) / Expense).toFixed(2)} %
+                        </Text>
+                        <Text style={Styles.Text}>
+                            ${otherExpense.toFixed(2)}
+                        </Text>
+                    </View>
                 </View>
-                <View
-                    style={{
-                        alignSelf: "flex-start",
-                        color: "#ffffff",
-                        marginVertical: 5,
-                    }}>
-                    <View
-                        style={{
-                            alignSelf: "flex-start",
-                            color: "#000000",
-                            flexDirection: "row",
-                        }}>
-                        <Ionicons name="fast-food-outline" size={20}></Ionicons>
-                        <Text
-                            style={{
-                                alignSelf: "flex-start",
-                                color: "#000000",
-                                fontSize: 16,
-                                fontWeight: "700",
-                                marginLeft: 5,
-                            }}>
-                            Food
-                        </Text>
-                    </View>
+                <View>
                     <Text
                         style={{
-                            alignSelf: "flex-start",
-                            color: "#ffffff",
-                            marginVertical: 2,
+                            padding: 10,
+                            backgroundColor: "lightblue",
+                            height: 200,
+                            marginTop: 10,
                         }}>
-                        {((foodExpense * 100) / Expense).toFixed(2)} %
-                    </Text>
-                    <Text
-                        style={{
-                            alignSelf: "flex-start",
-                            color: "#ffffff",
-                            marginVertical: 2,
-                        }}>
-                        ${foodExpense.toFixed(2)}
-                    </Text>
-                </View>
-                <View
-                    style={{
-                        alignSelf: "flex-start",
-                        color: "#ffffff",
-                        marginVertical: 5,
-                    }}>
-                    <View
-                        style={{
-                            alignSelf: "flex-start",
-                            color: "#000000",
-                            flexDirection: "row",
-                        }}>
-                        <Ionicons name="car-outline" size={20}></Ionicons>
-                        <Text
-                            style={{
-                                alignSelf: "flex-start",
-                                color: "#000000",
-                                fontSize: 16,
-                                fontWeight: "700",
-                                marginLeft: 5,
-                            }}>
-                            Car
-                        </Text>
-                    </View>
-                    <Text
-                        style={{
-                            alignSelf: "flex-start",
-                            color: "#ffffff",
-                            marginVertical: 2,
-                        }}>
-                        {((carExpense * 100) / Expense).toFixed(2)} %
-                    </Text>
-                    <Text
-                        style={{
-                            alignSelf: "flex-start",
-                            color: "#ffffff",
-                            marginVertical: 2,
-                        }}>
-                        ${carExpense.toFixed(2)}
-                    </Text>
-                </View>
-                <View
-                    style={{
-                        alignSelf: "flex-start",
-                        color: "#ffffff",
-                        marginVertical: 5,
-                    }}>
-                    <View
-                        style={{
-                            alignSelf: "flex-start",
-                            color: "#000000",
-                            flexDirection: "row",
-                        }}>
-                        <Ionicons name="question" size={20}></Ionicons>
-                        <Text
-                            style={{
-                                alignSelf: "flex-start",
-                                color: "#000000",
-                                fontSize: 16,
-                                fontWeight: "700",
-                                marginLeft: 5,
-                            }}>
-                            Others
-                        </Text>
-                    </View>
-                    <Text
-                        style={{
-                            alignSelf: "flex-start",
-                            color: "#ffffff",
-                            marginVertical: 2,
-                        }}>
-                        {((otherExpense * 100) / Expense).toFixed(2)} %
-                    </Text>
-                    <Text
-                        style={{
-                            alignSelf: "flex-start",
-                            color: "#ffffff",
-                            marginVertical: 2,
-                        }}>
-                        ${otherExpense.toFixed(2)}
+                        Expenses Graphs
                     </Text>
                 </View>
             </View>
         </View>
     );
 }
+
+const Styles = StyleSheet.create({
+    TitleText: {
+        alignSelf: "flex-start",
+        color: "#000000",
+        fontSize: 16,
+        fontWeight: "700",
+        marginLeft: 5,
+    },
+    Text: {
+        alignSelf: "center",
+        color: "#ffffff",
+        marginVertical: 2,
+    },
+    ExpensesTitle: {
+        alignSelf: "flex-start",
+        color: "#000000",
+        fontSize: 20,
+        fontWeight: "700",
+        marginBottom: 10,
+    },
+    Category: {
+        alignSelf: "flex-start",
+        color: "#ffffff",
+        marginVertical: 5,
+        marginRight: 15,
+    },
+});
 
 export default ExpenseGraph;
