@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import firebase from "../database/firebase";
+import IncomesPieChart from "./incomesPieChart";
 
 function IncomeGraph() {
     const [income, setIncome] = useState(0);
@@ -45,17 +46,22 @@ function IncomeGraph() {
                 setOtherIncome(otherIncomeAcum);
             });
     }, []);
+
     return (
-        <View style={{ flex: 1, justifyContent: "flex-start", margin: 10 }}>
+        <View style={{ flex: 1, justifyContent: "flex-start", margin: 5 }}>
             <View
                 style={{
-                    backgroundColor: "rgba(189, 249, 253, 0.12)",
-                    padding: 5,
+                    backgroundColor: "rgba(255,255,255 , 0.3)",
                     borderRadius: 5,
-                    padding: 15,
+                    padding: 10,
+                    margin: 5,
                 }}>
                 <Text style={Styles.IncomeTitle}>Incomes</Text>
-                <View style={{ flexDirection: "row" }}>
+                <View
+                    style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                    }}>
                     <View style={Styles.Category}>
                         <View
                             style={{
@@ -69,10 +75,7 @@ function IncomeGraph() {
                             <Text style={Styles.TitleText}>Work</Text>
                         </View>
                         <Text style={Styles.Text}>
-                            {((workIncome * 100) / income).toFixed(2)} %
-                        </Text>
-                        <Text style={Styles.Text}>
-                            ${workIncome.toFixed(2)}
+                            $ {workIncome.toFixed(2)}
                         </Text>
                     </View>
                     <View style={Styles.Category}>
@@ -86,10 +89,7 @@ function IncomeGraph() {
                             <Text style={Styles.TitleText}>Investments</Text>
                         </View>
                         <Text style={Styles.Text}>
-                            {((investmensIncome * 100) / income).toFixed(2)} %
-                        </Text>
-                        <Text style={Styles.Text}>
-                            ${investmensIncome.toFixed(2)}
+                            $ {investmensIncome.toFixed(2)}
                         </Text>
                     </View>
                     <View style={Styles.Category}>
@@ -103,23 +103,12 @@ function IncomeGraph() {
                             <Text style={Styles.TitleText}>Others</Text>
                         </View>
                         <Text style={Styles.Text}>
-                            {((otherIncome * 100) / income).toFixed(2)} %
-                        </Text>
-                        <Text style={Styles.Text}>
-                            ${otherIncome.toFixed(2)}
+                            $ {otherIncome.toFixed(2)}
                         </Text>
                     </View>
                 </View>
-                <View>
-                    <Text
-                        style={{
-                            padding: 10,
-                            backgroundColor: "lightblue",
-                            height: 200,
-                            marginTop: 10,
-                        }}>
-                        income Graphs
-                    </Text>
+                <View style={{ marginTop: 15 }}>
+                    <IncomesPieChart />
                 </View>
             </View>
         </View>

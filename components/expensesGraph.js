@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import firebase from "../database/firebase";
+import ExpensesPieChart from "./expensesPieChart";
 
 function ExpenseGraph() {
     const [Expense, setExpense] = useState(0);
@@ -9,7 +10,6 @@ function ExpenseGraph() {
     const [foodExpense, setFoodExpense] = useState(0);
     const [carExpense, setCarExpense] = useState(0);
     const [otherExpense, setOtherExpense] = useState(0);
-    const [Month, setMonth] = useState(" ");
 
     useEffect(() => {
         firebase.db
@@ -59,7 +59,7 @@ function ExpenseGraph() {
         <View style={{ flex: 1, justifyContent: "flex-start", margin: 10 }}>
             <View
                 style={{
-                    backgroundColor: "rgba(189, 249, 253, 0.12)",
+                    backgroundColor: "rgba(255,255,255 , 0.3)",
                     padding: 5,
                     borderRadius: 5,
                     padding: 15,
@@ -68,6 +68,7 @@ function ExpenseGraph() {
                 <View
                     style={{
                         flexDirection: "row",
+                        justifyContent: "space-between",
                     }}>
                     <View style={Styles.Category}>
                         <View
@@ -82,10 +83,7 @@ function ExpenseGraph() {
                             <Text style={Styles.TitleText}>Bills</Text>
                         </View>
                         <Text style={Styles.Text}>
-                            {((billsExpense * 100) / Expense).toFixed(2)} %
-                        </Text>
-                        <Text style={Styles.Text}>
-                            ${billsExpense.toFixed(2)}
+                            $ {billsExpense.toFixed(2)}
                         </Text>
                     </View>
                     <View style={Styles.Category}>
@@ -101,10 +99,7 @@ function ExpenseGraph() {
                             <Text style={Styles.TitleText}>Food</Text>
                         </View>
                         <Text style={Styles.Text}>
-                            {((foodExpense * 100) / Expense).toFixed(2)} %
-                        </Text>
-                        <Text style={Styles.Text}>
-                            ${foodExpense.toFixed(2)}
+                            $ {foodExpense.toFixed(2)}
                         </Text>
                     </View>
                     <View style={Styles.Category}>
@@ -118,10 +113,7 @@ function ExpenseGraph() {
                             <Text style={Styles.TitleText}>Car</Text>
                         </View>
                         <Text style={Styles.Text}>
-                            {((carExpense * 100) / Expense).toFixed(2)} %
-                        </Text>
-                        <Text style={Styles.Text}>
-                            ${carExpense.toFixed(2)}
+                            $ {carExpense.toFixed(2)}
                         </Text>
                     </View>
                     <View style={Styles.Category}>
@@ -135,23 +127,12 @@ function ExpenseGraph() {
                             <Text style={Styles.TitleText}>Others</Text>
                         </View>
                         <Text style={Styles.Text}>
-                            {((otherExpense * 100) / Expense).toFixed(2)} %
-                        </Text>
-                        <Text style={Styles.Text}>
-                            ${otherExpense.toFixed(2)}
+                            $ {otherExpense.toFixed(2)}
                         </Text>
                     </View>
                 </View>
-                <View>
-                    <Text
-                        style={{
-                            padding: 10,
-                            backgroundColor: "lightblue",
-                            height: 200,
-                            marginTop: 10,
-                        }}>
-                        Expenses Graphs
-                    </Text>
+                <View style={{ marginTop: 15 }}>
+                    <ExpensesPieChart />
                 </View>
             </View>
         </View>
@@ -185,5 +166,4 @@ const Styles = StyleSheet.create({
         marginRight: 15,
     },
 });
-
 export default ExpenseGraph;

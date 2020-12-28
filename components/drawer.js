@@ -12,6 +12,9 @@ import AnalyticsScreen from "../screens/analyticsScreen";
 import foto from "../assets/foto.jpg";
 import Balance from "./balance";
 import TransactionList from "../components/transactionList";
+import ExpenseGraph from "./expensesGraph";
+import ExpensesPieChart from "./expensesPieChart";
+import IncomesPieChart from "./incomesPieChart";
 
 function Home({ navigation }) {
     return (
@@ -50,8 +53,8 @@ function Home({ navigation }) {
                 <Image
                     source={foto}
                     style={{
-                        width: 150,
-                        height: 150,
+                        width: 125,
+                        height: 125,
                         borderRadius: 80,
                         alignSelf: "center",
                     }}
@@ -88,9 +91,32 @@ function Home({ navigation }) {
                                 color: "grey",
                                 fontSize: 16,
                                 marginLeft: 15,
+                                marginTop: 10,
                             }}>
                             Analytics summary
                         </Text>
+                        <Text
+                            style={{
+                                marginTop: 10,
+                                marginLeft: 15,
+                                fontSize: 16,
+                                fontWeight: "bold",
+                                color: "#000",
+                            }}>
+                            Incomes
+                        </Text>
+                        <IncomesPieChart />
+                        <Text
+                            style={{
+                                marginTop: 10,
+                                marginLeft: 15,
+                                fontSize: 16,
+                                fontWeight: "bold",
+                                color: "#000",
+                            }}>
+                            Expenses
+                        </Text>
+                        <ExpensesPieChart />
                     </View>
                 </ScrollView>
             </View>
