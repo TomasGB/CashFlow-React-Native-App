@@ -126,14 +126,14 @@ const BalanceScreen = (props) => {
                                                     : Styles.ArrowIncome,
                                             ]}></Ionicons>
                                     </View>
-                                    <Text style={Styles.Text2}>
-                                        {item.category}
+                                    <Text style={Styles.Text1}>
+                                        {item.dateString}
                                     </Text>
                                     <Text style={Styles.Text2}>
                                         {"$" + item.amount}
                                     </Text>
-                                    <Text style={Styles.Text1}>
-                                        {item.dateString}
+                                    <Text style={Styles.Text2}>
+                                        {item.category}
                                     </Text>
                                     <View>
                                         <TouchableOpacity
