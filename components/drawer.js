@@ -12,9 +12,9 @@ import AnalyticsScreen from "../screens/analyticsScreen";
 import foto from "../assets/foto.jpg";
 import Balance from "./balance";
 import TransactionList from "../components/transactionList";
-import ExpenseGraph from "./expensesGraph";
 import ExpensesPieChart from "./expensesPieChart";
 import IncomesPieChart from "./incomesPieChart";
+import firebase from "../database/firebase";
 
 function Home({ navigation }) {
     return (
@@ -144,6 +144,27 @@ function CustomDrawerContent(props) {
                 Tomas Gomez Bermudez
             </Text>
             <DrawerItemList {...props} />
+            <View style={{ flex: 1, marginLeft: 20, marginTop: 230 }}>
+                <TouchableOpacity
+                    style={{
+                        justifyContent: "center",
+                        alignItems: "center",
+                        width: 70,
+                        flexDirection: "row",
+                    }}
+                    onPress={() => {
+                        props.navigation.navigate("Login");
+                    }}>
+                    <Ionicons
+                        name="log-out-outline"
+                        size={30}
+                        color={"rgba(0,0,0, 0.5)"}
+                    />
+                    <Text style={{ marginLeft: 5, Color: "#666666" }}>
+                        Log out
+                    </Text>
+                </TouchableOpacity>
+            </View>
         </DrawerContentScrollView>
     );
 }

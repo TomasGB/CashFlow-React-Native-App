@@ -3,7 +3,11 @@ import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./screens/homeScreen";
+import BalanceScreen from "./screens/transactionsScreen";
+import AnalyticsScreen from "./screens/analyticsScreen";
 import AddTransactionScreen from "./screens/addTransaction";
+import SignUpScreen from "./screens/signupScreen";
+import LogInScreen from "./screens/loginScreen";
 import { Buffer } from "buffer";
 import { LogBox } from "react-native";
 
@@ -17,8 +21,28 @@ function MyStack() {
     return (
         <Stack.Navigator>
             <Stack.Screen
-                name="home"
+                name="Login"
+                component={LogInScreen}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="Sign up"
+                component={SignUpScreen}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="Home"
                 component={HomeScreen}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="Analytics"
+                component={AnalyticsScreen}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="Transactions"
+                component={BalanceScreen}
                 options={{ headerShown: false }}
             />
             <Stack.Screen

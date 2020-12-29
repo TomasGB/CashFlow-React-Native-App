@@ -44,7 +44,7 @@ function AnalyticsScreen(props) {
                             </TouchableOpacity>
                             <Text
                                 style={{
-                                    fontSize: 22,
+                                    fontSize: 20,
                                     justifyContent: "center",
                                     alignSelf: "center",
                                     color: "#fff",

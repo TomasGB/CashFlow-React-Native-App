@@ -8,7 +8,9 @@ import {
     StyleSheet,
     SafeAreaView,
     Alert,
+    TouchableOpacity,
 } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import firebase from "../database/firebase";
 import { Picker } from "@react-native-picker/picker";
@@ -58,7 +60,7 @@ function AddTransactionScreen(props) {
                 DateString: dateString,
                 Category: category,
             });
-            Alert.alert("New transaction added.", [
+            Alert.alert("transaction", "New transaction added.", [
                 {
                     text: "OK",
                     onPress: () => props.navigation.navigate("Home"),
@@ -72,12 +74,28 @@ function AddTransactionScreen(props) {
             colors={["#0464DE", "#3277D0", "#65A8FC"]}
             style={{ width: "100%", height: "100%" }}>
             <SafeAreaView style={{ flex: 1 }}>
+                <View
+                    style={{
+                        flexDirection: "row",
+                        marginTop: 50,
+                    }}>
+                    <TouchableOpacity
+                        style={{
+                            justifyContent: "center",
+                            alignItems: "flex-start",
+                            paddingLeft: 5,
+                            marginLeft: 10,
+                        }}
+                        onPress={() => props.navigation.navigate("Home")}>
+                        <Ionicons name="arrow-back" color="#fff" size={20} />
+                    </TouchableOpacity>
+                </View>
                 <ScrollView style={Styles.Container}>
                     <Text
                         style={{
                             flex: 1,
                             color: "#fff",
-                            marginVertical: 35,
+                            marginBottom: 25,
                             fontSize: 24,
                             justifyContent: "center",
                             alignSelf: "center",
