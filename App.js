@@ -11,9 +11,16 @@ import LogInScreen from "./screens/loginScreen";
 import { Buffer } from "buffer";
 import { LogBox } from "react-native";
 
-LogBox.ignoreAllLogs(true);
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import thunkMiddleware from "redux-thunk";
+import reducer from "./redux/reducers/index";
 
+LogBox.ignoreAllLogs(true);
 global.Buffer = Buffer;
+
+const middleware = applyMiddleware(thunkMiddleware);
+const store = createStore(reducer, middleware);
 
 const Stack = createStackNavigator();
 
@@ -56,9 +63,11 @@ function MyStack() {
 
 export default function App() {
     return (
-        <NavigationContainer>
-            <MyStack />
-        </NavigationContainer>
+        <Provider store={store}>
+            <NavigationContainer>
+                <MyStack />
+            </NavigationContainer>
+        </Provider>
     );
 }
 

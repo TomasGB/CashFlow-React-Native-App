@@ -15,8 +15,24 @@ import TransactionList from "../components/transactionList";
 import ExpensesPieChart from "./expensesPieChart";
 import IncomesPieChart from "./incomesPieChart";
 import firebase from "../database/firebase";
+import { connect } from "react-redux";
+import { getUser } from "../redux/actions/user";
 
 function Home({ navigation }) {
+    const [actualUser, setActualUser] = useState();
+
+    useEffect(() => {
+        firebase.db
+            .collection("users")
+            .where("uid", "==", "tomas@gmail.com")
+            .onSnapshot((querySnapshot) => {
+                querySnapshot.docs.forEach((doc) => {
+                    setActualUser(doc.data().Name);
+                });
+            });
+        setActualUser();
+    }, []);
+
     return (
         <LinearGradient
             colors={["#0B73F8", "#3277D0", "#65A8FC"]}
@@ -46,7 +62,7 @@ function Home({ navigation }) {
                                 color: "#fff",
                                 marginLeft: 20,
                             }}>
-                            Hello, Tomas
+                            Hello, tomas
                         </Text>
                     </View>
                 </View>
@@ -125,6 +141,19 @@ function Home({ navigation }) {
 }
 
 function CustomDrawerContent(props) {
+    const handleSignout = async () => {
+        await firebase.auth.signOut();
+        props.navigation.navigate("Login");
+    };
+
+    firebase.auth.onAuthStateChanged((user) => {
+        if (user) {
+            this.props.getUser(user.Name);
+            if (this.props.user != null) {
+                console.log(user.Name);
+            }
+        }
+    });
     return (
         <DrawerContentScrollView
             {...props}
@@ -140,9 +169,7 @@ function CustomDrawerContent(props) {
                     alignSelf: "flex-start",
                 }}
             />
-            <Text style={{ margin: 20, fontSize: 14 }}>
-                Tomas Gomez Bermudez
-            </Text>
+            <Text style={{ margin: 20, fontSize: 14 }}>{props.Name}</Text>
             <DrawerItemList {...props} />
             <View style={{ flex: 1, marginLeft: 20, marginTop: 230 }}>
                 <TouchableOpacity
@@ -153,16 +180,14 @@ function CustomDrawerContent(props) {
                         flexDirection: "row",
                     }}
                     onPress={() => {
-                        props.navigation.navigate("Login");
+                        handleSignout();
                     }}>
                     <Ionicons
                         name="log-out-outline"
                         size={30}
                         color={"rgba(0,0,0, 0.5)"}
                     />
-                    <Text style={{ marginLeft: 5, Color: "#666666" }}>
-                        Log out
-                    </Text>
+                    <Text style={{ marginLeft: 5 }}>Log out</Text>
                 </TouchableOpacity>
             </View>
         </DrawerContentScrollView>
@@ -182,4 +207,17 @@ function MyDrawer() {
     );
 }
 
-export default MyDrawer;
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators(
+        { updateEmail, updatePassword, login, getUser },
+        dispatch
+    );
+};
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+    };
+};
+
+export default connect(mapStateToProps)(MyDrawer);

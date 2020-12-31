@@ -1,104 +1,112 @@
 import React, { useState } from "react";
 import { Alert } from "react-native";
 import { View, Button, Text, TextInput } from "react-native";
-import firebase from "../database/firebase";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import {
+    updateEmail,
+    updatePassword,
+    updateName,
+    signup,
+} from "../redux/actions/user";
 
-function SignUpScreen(props) {
-    const [user, setNewUser] = useState({
-        name: "",
-        email: "",
-        password: "",
-    });
-
-    const handleSignUp = async () => {
-        await firebase.auth
-            .createUserWithEmailAndPassword(user.email, user.password)
-            .then(() => {
-                firebase.db.collection("users").add({
-                    Name: user.name,
-                    Email: user.email,
-                    Password: user.password,
-                });
-                props.navigation.navigate("Login");
-            })
-            .catch((error) => {
-                Alert.alert("Error", "There was an error.");
-                console.log(`Error: ${error.code}`, `${error.message}`);
-            });
+class Signup extends React.Component {
+    handleSignUp = () => {
+        try {
+            this.props.signup();
+            this.props.navigation.navigate("Login");
+        } catch (error) {
+            Alert.alert(error);
+            console.log(error);
+        }
     };
 
-    console.log(user);
-
-    return (
-        <View
-            style={{ flex: 1, justifyContent: "center", alignSelf: "center" }}>
-            <Text
+    render() {
+        return (
+            <View
                 style={{
-                    textAlign: "center",
-                    fontSize: 28,
-                    fontWeight: "bold",
-                    color: "#0B73F8",
-                    marginBottom: 30,
+                    justifyContent: "center",
+                    alignSelf: "center",
+                    marginTop: 170,
                 }}>
-                Create a new account
-            </Text>
-            <View style={{ justifyContent: "center", alignSelf: "center" }}>
-                <View
+                <Text
                     style={{
-                        padding: 5,
-                        marginBottom: 5,
-                        borderBottomWidth: 1,
-                        borderBottomColor: "#cccccc",
-                        color: "#000",
+                        textAlign: "center",
+                        fontSize: 28,
+                        fontWeight: "bold",
+                        color: "#0B73F8",
+                        marginBottom: 30,
                     }}>
+                    Create a new account
+                </Text>
+                <View style={{ justifyContent: "center", alignSelf: "center" }}>
                     <TextInput
+                        style={{
+                            padding: 5,
+                            marginBottom: 5,
+                            borderBottomWidth: 1,
+                            borderBottomColor: "#cccccc",
+                            color: "#000",
+                        }}
+                        value={this.props.user.name}
+                        onChangeText={(name) => this.props.updateName(name)}
                         placeholder="Name"
-                        onChangeText={(value) =>
-                            setNewUser({ ...user, name: value })
-                        }></TextInput>
-                </View>
-                <View
-                    style={{
-                        padding: 5,
-                        marginBottom: 5,
-                        borderBottomWidth: 1,
-                        borderBottomColor: "#cccccc",
-                        color: "#000",
-                    }}>
+                    />
                     <TextInput
+                        style={{
+                            padding: 5,
+                            marginBottom: 5,
+                            borderBottomWidth: 1,
+                            borderBottomColor: "#cccccc",
+                            color: "#000",
+                        }}
+                        value={this.props.user.email}
+                        onChangeText={(email) => this.props.updateEmail(email)}
                         placeholder="Email"
                         autoCapitalize="none"
-                        onChangeText={(value) =>
-                            setNewUser({ ...user, email: value })
-                        }></TextInput>
-                </View>
-                <View
-                    style={{
-                        padding: 5,
-                        marginBottom: 5,
-                        borderBottomWidth: 1,
-                        borderBottomColor: "#cccccc",
-                        color: "#000",
-                    }}>
+                    />
                     <TextInput
+                        style={{
+                            padding: 5,
+                            marginBottom: 5,
+                            borderBottomWidth: 1,
+                            borderBottomColor: "#cccccc",
+                            color: "#000",
+                        }}
+                        value={this.props.user.password}
+                        onChangeText={(password) =>
+                            this.props.updatePassword(password)
+                        }
                         placeholder="Password"
-                        onChangeText={(value) =>
-                            setNewUser({ ...user, password: value })
-                        }></TextInput>
-                </View>
-                <View
-                    style={{
-                        width: 200,
-                        padding: 5,
-                        marginTop: 25,
-                        color: "#000",
-                    }}>
-                    <Button
-                        title="Sign Up"
-                        onPress={() => handleSignUp()}></Button>
+                        secureTextEntry={true}
+                    />
+                    <View
+                        style={{
+                            width: 200,
+                            padding: 5,
+                            marginTop: 25,
+                            color: "#000",
+                        }}>
+                        <Button
+                            title={"Sign up"}
+                            onPress={this.handleSignUp}></Button>
+                    </View>
                 </View>
             </View>
-        </View>
-    );
+        );
+    }
 }
-export default SignUpScreen;
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators(
+        { updateName, updateEmail, updatePassword, signup },
+        dispatch
+    );
+};
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
