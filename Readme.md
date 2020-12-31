@@ -31,3 +31,19 @@ Personal finance tracker app developed with the React Native, Redux and Firebase
 -   "react-redux": "^7.2.2".
 -   "redux": "^4.0.5".
 -   "redux-thunk": "^2.3.0".
+
+## Scren Captures:
+
+### Home screen
+
+<img src="assets/1.jpg" width="200" />
+
+<img src="assets/2.jpg" width="200" />
+
+### Transactions screen
+
+<img src="assets/3.jpg" width="200" />
+
+### Analytics screen
+
+<img src="assets/4.jpg" width="200" />
