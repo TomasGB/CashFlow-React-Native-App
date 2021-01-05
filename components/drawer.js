@@ -38,101 +38,102 @@ function Home({ navigation }) {
             colors={["#0B73F8", "#3277D0", "#65A8FC"]}
             style={{ width: "100%", height: "100%" }}>
             <View style={{ flex: 1, paddingTop: 25 }}>
-                <View>
-                    <View
-                        style={{
-                            flexDirection: "row",
-                            marginTop: 15,
-                            marginBottom: 35,
-                        }}>
-                        <TouchableOpacity
-                            style={{
-                                justifyContent: "center",
-                                alignItems: "flex-start",
-                                paddingLeft: 5,
-                            }}
-                            onPress={() => navigation.openDrawer()}>
-                            <Ionicons name="menu" color="#fff" size={40} />
-                        </TouchableOpacity>
-                        <Text
-                            style={{
-                                fontSize: 22,
-                                justifyContent: "center",
-                                alignSelf: "center",
-                                color: "#fff",
-                                marginLeft: 20,
-                            }}>
-                            Hello, tomas
-                        </Text>
-                    </View>
-                </View>
-                <Image
-                    source={foto}
+                <View
                     style={{
-                        width: 125,
-                        height: 125,
-                        borderRadius: 80,
-                        alignSelf: "center",
-                    }}
-                />
-                <ScrollView
-                    style={{
-                        backgroundColor: "#fff",
-                        marginTop: 30,
-                        borderTopLeftRadius: 15,
-                        borderTopRightRadius: 15,
+                        flexDirection: "row",
+                        marginTop: 15,
+                        marginBottom: 5,
                     }}>
+                    <TouchableOpacity
+                        style={{
+                            justifyContent: "center",
+                            alignItems: "flex-start",
+                            paddingLeft: 5,
+                        }}
+                        onPress={() => navigation.openDrawer()}>
+                        <Ionicons name="menu" color="#fff" size={40} />
+                    </TouchableOpacity>
                     <Text
                         style={{
-                            margin: 0,
+                            fontSize: 22,
                             justifyContent: "center",
                             alignSelf: "center",
+                            color: "#fff",
+                            marginLeft: 20,
                         }}>
-                        <Balance />
+                        Hello, Tomas
                     </Text>
-                    <View>
+                </View>
+                <ScrollView>
+                    <Image
+                        source={foto}
+                        style={{
+                            width: 125,
+                            height: 125,
+                            borderRadius: 80,
+                            alignSelf: "center",
+                            marginTop: 10,
+                        }}
+                    />
+                    <View
+                        style={{
+                            backgroundColor: "#fff",
+                            marginTop: 30,
+                            borderTopLeftRadius: 15,
+                            borderTopRightRadius: 15,
+                        }}>
                         <Text
                             style={{
-                                color: "grey",
-                                fontSize: 16,
-                                marginLeft: 15,
+                                margin: 0,
+                                justifyContent: "center",
+                                alignSelf: "center",
                             }}>
-                            Latest transactions
+                            <Balance />
                         </Text>
-                        <TransactionList />
-                    </View>
-                    <View>
-                        <Text
-                            style={{
-                                color: "grey",
-                                fontSize: 16,
-                                marginLeft: 15,
-                                marginTop: 10,
-                            }}>
-                            Analytics summary
-                        </Text>
-                        <Text
-                            style={{
-                                marginTop: 10,
-                                marginLeft: 15,
-                                fontSize: 16,
-                                fontWeight: "bold",
-                                color: "#000",
-                            }}>
-                            Incomes
-                        </Text>
-                        <IncomesPieChart />
-                        <Text
-                            style={{
-                                marginTop: 10,
-                                marginLeft: 15,
-                                fontSize: 16,
-                                fontWeight: "bold",
-                                color: "#000",
-                            }}>
-                            Expenses
-                        </Text>
-                        <ExpensesPieChart />
+                        <View>
+                            <Text
+                                style={{
+                                    color: "grey",
+                                    fontSize: 16,
+                                    marginLeft: 15,
+                                }}>
+                                Latest transactions
+                            </Text>
+                            <TransactionList />
+                        </View>
+                        <View>
+                            <Text
+                                style={{
+                                    color: "grey",
+                                    fontSize: 16,
+                                    marginLeft: 15,
+                                    marginTop: 10,
+                                }}>
+                                Analytics summary
+                            </Text>
+                            <Text
+                                style={{
+                                    marginTop: 10,
+                                    marginLeft: 15,
+                                    fontSize: 16,
+                                    fontWeight: "bold",
+                                    color: "#000",
+                                }}>
+                                Incomes
+                            </Text>
+                            <IncomesPieChart />
+                            <Text
+                                style={{
+                                    marginTop: 10,
+                                    marginLeft: 15,
+                                    fontSize: 16,
+                                    fontWeight: "bold",
+                                    color: "#000",
+                                }}>
+                                Expenses
+                            </Text>
+                            <ExpensesPieChart />
+                        </View>
                     </View>
                 </ScrollView>
             </View>
@@ -169,7 +170,7 @@ function CustomDrawerContent(props) {
                     alignSelf: "flex-start",
                 }}
             />
-            <Text style={{ margin: 20, fontSize: 14 }}>{props.Name}</Text>
+            <Text style={{ margin: 20, fontSize: 14 }}>Tomas Gomez</Text>
             <DrawerItemList {...props} />
             <View style={{ flex: 1, marginLeft: 20, marginTop: 230 }}>
                 <TouchableOpacity
@@ -210,7 +211,7 @@ function MyDrawer() {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators(
         { updateEmail, updatePassword, login, getUser },
-        dispatch
+        dispatch,
     );
 };
 

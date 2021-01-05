@@ -39,9 +39,7 @@ function AddTransactionScreen(props) {
             "  " +
             today.getHours() +
             ":" +
-            today.getMinutes() +
-            ":" +
-            today.getSeconds();
+            today.getMinutes();
 
         if (state.Category == "") {
             category = "Others";

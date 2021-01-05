@@ -42,6 +42,7 @@ export const login = () => {
             dispatch(getUser(response.user.uid));
         } catch (e) {
             console.log(e);
+            alert(e);
         }
     };
 };

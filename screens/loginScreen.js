@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Alert } from "react-native";
 import {
     View,
     StyleSheet,
@@ -7,6 +6,7 @@ import {
     Text,
     TextInput,
     TouchableOpacity,
+    Alert,
 } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";

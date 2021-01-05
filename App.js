@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import SplashScreen from "./screens/splashScreen";
 import HomeScreen from "./screens/homeScreen";
 import BalanceScreen from "./screens/transactionsScreen";
 import AnalyticsScreen from "./screens/analyticsScreen";
@@ -27,6 +28,11 @@ const Stack = createStackNavigator();
 function MyStack() {
     return (
         <Stack.Navigator>
+            <Stack.Screen
+                name="SplashScreen"
+                component={SplashScreen}
+                options={{ headerShown: false }}
+            />
             <Stack.Screen
                 name="Login"
                 component={LogInScreen}
