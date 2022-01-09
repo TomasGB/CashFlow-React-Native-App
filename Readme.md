@@ -32,6 +32,4 @@ Personal finance tracker app developed with the React Native, Redux and Firebase
 -   "redux": "^4.0.5".
 -   "redux-thunk": "^2.3.0".
 
-## Demo:
 
-<img src="assets\cashflowapp.gif"  width="200" />
